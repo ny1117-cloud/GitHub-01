@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소희의원 | 프리미엄 피부과 · 비만클리닉</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #D47A9A;
+            --primary-dark: #B35F7D;
+            --secondary: #6f3553;
+            --bg-soft: #FFF9FB;
+            --text-main: #4A343D;
+            --text-light: #7a5a65;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 20px 40px rgba(212, 122, 154, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Decorations */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 122, 154, 0.15) 0%, rgba(255, 249, 251, 0) 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        .blob-1 { top: -100px; right: -100px; }
+        .blob-2 { bottom: -150px; left: -150px; width: 600px; height: 600px; }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 0 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(212, 122, 154, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 84px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero h1 i {
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            word-break: keep-all;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 10px 30px rgba(212, 122, 154, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 122, 154, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 122, 154, 0.05);
+            transform: translateY(-5px);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Cards Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .fancy-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 122, 154, 0.05);
+        }
+
+        .fancy-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(212, 122, 154, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 122, 154, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .fancy-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .fancy-card p {
+            color: var(--text-light);
+            font-weight: 300;
+            font-size: 16px;
+            word-break: keep-all;
+        }
+
+        /* Info Boxes */
+        .info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            margin-bottom: 35px;
+            color: var(--secondary);
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            font-size: 16px;
+        }
+
+        .info-item .day { font-weight: 600; color: var(--text-main); }
+        .info-item .time { color: var(--text-light); }
+        .info-item.highlight .time { color: var(--primary); font-weight: 600; }
+
+        .address-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .phone-number {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 20px 0 30px;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            background: #fff;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .copyright {
+            color: #bbb;
+            font-size: 13px;
+        }
+
+        /* Floating Button */
+        .floating-action {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 999;
+        }
+
+        .btn-float {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(212, 122, 154, 0.4);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-float:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 64px; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .menu { display: none; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .info-container { grid-template-columns: 1fr; }
+            .hero { padding: 150px 0 80px; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Sohee Clinic</a>
+                <div class="menu">
+                    <a href="#about">의원소개</a>
+                    <a href="#services">진료과목</a>
+                    <a href="#info">진료안내</a>
+                    <a href="#contact">오시는길</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero visible">
+        <div class="container">
+            <span class="hero-label">Premium Aesthetic Clinic</span>
+            <h1>Soft <i>&</i> Elegant<br>Your Natural Beauty</h1>
+            <p>
+                소희의원은 피부 본연의 건강함과 숨겨진 아름다움을 찾아드립니다.<br>
+                과하지 않은 섬세한 손길로 당신만의 빛나는 순간을 만드세요.
+            </p>
+            <div class="btn-group">
+                <a href="https://booking.naver.com/" target="_blank" class="btn btn-primary">
+                    <i data-lucide="calendar" style="margin-right: 10px; width: 20px;"></i>
+                    네이버 실시간 예약
+                </a>
+                <a href="#services" class="btn btn-outline">진료과목 둘러보기</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <span>Philosophy</span>
+                <h2>About Sohee Clinic</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="heart"></i></div>
+                    <h3>1:1 맞춤 상담</h3>
+                    <p>공장에서 찍어내는 진료가 아닌, 개개인의 피부 특성과 고민에 귀 기울이는 깊이 있는 상담을 진행합니다.</p>
+                </div>
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="sparkles"></i></div>
+                    <h3>프리미엄 솔루션</h3>
+                    <p>최신 장비와 검증된 정품 약제만을 사용하여 안전하고 효과적인 최상의 결과를 약속드립니다.</p>
+                </div>
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="feather"></i></div>
+                    <h3>자연스러운 변화</h3>
+                    <p>인위적이지 않은 자연스러운 아름다움을 추구하며, 일상으로의 빠른 복귀를 고려한 섬세한 시술을 지향합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <span>Our Services</span>
+                <h2>Specialized Clinic</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="user"></i></div>
+                    <h3>피부과 클리닉</h3>
+                    <p>여드름, 흉터 재생부터 색소 질환, 리프팅, 스킨부스터까지 건강한 피부를 위한 모든 솔루션을 제공합니다.</p>
+                </div>
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="activity"></i></div>
+                    <h3>비만·체형 클리닉</h3>
+                    <p>개인별 체질 분석을 통한 체계적인 다이어트 설계와 바디 라인 교정을 위한 맞춤 관리를 제안합니다.</p>
+                </div>
+                <div class="fancy-card">
+                    <div class="card-icon"><i data-lucide="coffee"></i></div>
+                    <h3>프라이빗 케어</h3>
+                    <p>편안하고 안락한 독립된 공간에서 프라이버시를 보호받으며 온전한 휴식과 케어를 경험하실 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <div class="container">
+            <div class="info-container">
+                <div class="info-box">
+                    <h3>진료시간 안내</h3>
+                    <div class="info-item">
+                        <span class="day">월 · 화 · 목 · 금</span>
+                        <span class="time">10:00 - 19:00</span>
+                    </div>
+                    <div class="info-item highlight">
+                        <span class="day">수요일 (야간진료)</span>
+                        <span class="time">10:00 - 20:00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="day">점심시간</span>
+                        <span class="time">13:00 - 14:00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="day">토 · 일 · 공휴일</span>
+                        <span class="time">휴진</span>
+                    </div>
+                </div>
+                <div class="info-box" id="contact">
+                    <h3>오시는 길</h3>
+                    <p class="address-text">경기도 과천시 핑크로 123</p>
+                    <p class="address-text" style="color: var(--text-light); font-weight: 300;">소희빌딩 3층 (무료 주차 가능)</p>
+                    <a href="tel:02-1234-5678" class="phone-number">02. 1234. 5678</a>
+                    <a href="https://booking.naver.com/" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        네이버 예약하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">Sohee Clinic</span>
+            <div class="footer-links">
+                <a href="#about">의원소개</a>
+                <a href="#services">진료과목</a>
+                <a href="#info">이용약관</a>
+                <a href="#info">개인정보처리방침</a>
+            </div>
+            <p class="copyright">소희의원 © 2026 All Rights Reserved. | 사업자등록번호: 123-45-67890</p>
+        </div>
+    </footer>
+
+    <div class="floating-action">
+        <a href="https://booking.naver.com/" target="_blank" class="btn-float" title="실시간 예약">
+            <i data-lucide="calendar-check"></i>
+        </a>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
