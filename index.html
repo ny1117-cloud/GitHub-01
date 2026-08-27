@@ -3,76 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>소희의원 · Sohee Clinic — Maison de Beauté</title>
+<title>L'EAU LIFT Clinique · 로리프트 의원 과천</title>
+<meta name="description" content="로리프트 의원 과천 — 피부, 체형, 안티에이징. 자연스러운 아름다움을 위한 프리미엄 클리닉." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Tenor+Sans&family=Noto+Serif+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-<script>
-  // ==== TWEAKS ============================================================
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "theme": "editorial",
-    "showMarquee": true,
-    "clinicName": "Sohee",
-    "clinicSubname": "Clinique"
-  }/*EDITMODE-END*/;
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
-   THEMES
+   PALETTE
    ========================================================================== */
-:root,
-html[data-theme="editorial"] {
-  --paper:        #F4EEE7;
-  --paper-warm:   #EDE3D7;
-  --ink:          #2C1520;
-  --ink-soft:     #5A3D48;
-  --ink-mute:     #8E7580;
-  --rule:         #2C1520;
+:root {
+  --paper:        #FCFAF7;
+  --paper-warm:   #F5F0E9;
+  --ink:          #1A1613;
+  --ink-soft:     #4A4340;
+  --ink-mute:     #8B857F;
+  --rule:         #1A1613;
+  --rule-soft:    rgba(26,22,19,0.12);
   --rose:         #C58A8A;
   --rose-deep:    #9B5C6B;
-  --gold:         #A87C4F;
   --accent:       #9B5C6B;
-  --card:         #FBF7F1;
-  --card-edge:    rgba(44,21,32,0.08);
-  --shadow:       0 30px 60px -30px rgba(44,21,32,0.25);
-  --noise-op:     0.06;
-}
-
-html[data-theme="boudoir"] {
-  --paper:        #FBF4F3;
-  --paper-warm:   #F4E6E3;
-  --ink:          #3B2530;
-  --ink-soft:     #6B4A58;
-  --ink-mute:     #A58A94;
-  --rule:         #3B2530;
-  --rose:         #D9A4A4;
-  --rose-deep:    #B57B8A;
-  --gold:         #BE9668;
-  --accent:       #B57B8A;
-  --card:         #FFFCFB;
-  --card-edge:    rgba(59,37,48,0.08);
-  --shadow:       0 30px 60px -30px rgba(181,123,138,0.25);
-  --noise-op:     0.04;
-}
-
-html[data-theme="noir"] {
-  --paper:        #141012;
-  --paper-warm:   #1C1618;
-  --ink:          #F1E7DE;
-  --ink-soft:     #C9B9AD;
-  --ink-mute:     #8A7A70;
-  --rule:         #F1E7DE;
-  --rose:         #D9A4A4;
-  --rose-deep:    #E7B8B8;
-  --gold:         #C9A064;
-  --accent:       #E7B8B8;
-  --card:         #1E1719;
-  --card-edge:    rgba(241,231,222,0.1);
-  --shadow:       0 30px 60px -30px rgba(0,0,0,0.6);
-  --noise-op:     0.08;
+  --card:         #FFFFFF;
+  --card-edge:    rgba(26,22,19,0.08);
+  --shadow:       0 30px 60px -30px rgba(26,22,19,0.18);
 }
 
 /* ==========================================================================
@@ -81,28 +36,14 @@ html[data-theme="noir"] {
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Noto Serif KR', 'Cormorant Garamond', serif;
+  font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
   background: var(--paper);
   color: var(--ink);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background 0.6s ease, color 0.6s ease;
 }
-
-/* Paper grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: var(--noise-op);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.17  0 0 0 0 0.08  0 0 0 0 0.12  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: multiply;
-}
-html[data-theme="noir"] body::before { mix-blend-mode: screen; }
 
 ::selection { background: var(--rose-deep); color: var(--paper); }
 
@@ -112,17 +53,18 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
 }
 
 /* Typography primitives */
-.serif { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
-.sans  { font-family: 'Tenor Sans', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
-.mono  { font-family: 'JetBrains Mono', monospace; font-weight: 300; }
+.serif   { font-family: 'Cormorant Garamond', serif; }
+.sans    { font-family: 'Inter', sans-serif; }
+.kor     { font-family: 'Noto Sans KR', sans-serif; }
+.mono    { font-family: 'JetBrains Mono', monospace; font-weight: 300; }
 
-/* Rule (hairline divider) */
 .rule {
   height: 1px;
   background: var(--rule);
   width: 100%;
   transform-origin: left center;
 }
+.rule.soft { background: var(--rule-soft); }
 
 /* ==========================================================================
    MASTHEAD / NAV
@@ -131,11 +73,11 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(14px) saturate(1.1);
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  border-bottom: 1px solid var(--rule);
-  transition: padding 0.4s ease, background 0.4s ease;
+  border-bottom: 1px solid var(--rule-soft);
+  transition: padding 0.4s ease;
 }
 .masthead .wrap {
   display: grid;
@@ -148,13 +90,15 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
 
 .mast-left, .mast-right {
   display: flex;
-  gap: 36px;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  gap: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .mast-right { justify-content: flex-end; }
+
 .mast-left a, .mast-right a {
   color: var(--ink-soft);
   text-decoration: none;
@@ -164,19 +108,20 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   line-height: 1;
 }
 .mast-left a .kor,
 .mast-right a .kor {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 10.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   text-transform: none;
   color: var(--ink-mute);
   transition: color 0.3s;
 }
+.mast-left a:hover, .mast-right a:hover { color: var(--ink); }
 .mast-left a:hover .kor,
 .mast-right a:hover .kor { color: var(--rose-deep); }
 .mast-left a::after, .mast-right a::after {
@@ -187,41 +132,61 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   background: var(--accent);
   transition: width 0.35s ease;
 }
-.mast-left a:hover, .mast-right a:hover { color: var(--ink); }
 .mast-left a:hover::after, .mast-right a:hover::after { width: 100%; }
 
+/* Wordmark — new L'EAU LIFT identity */
 .wordmark {
   text-align: center;
   text-decoration: none;
   color: var(--ink);
   line-height: 1;
+  display: inline-block;
 }
 .wordmark .wm-main {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 34px;
-  letter-spacing: -0.5px;
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1;
 }
 .wordmark .wm-sub {
   display: block;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.55em;
-  margin-top: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-top: 5px;
   color: var(--ink-mute);
-  text-transform: uppercase;
+  line-height: 1;
+}
+.wordmark .wm-divider {
+  display: block;
+  width: 140px;
+  height: 1px;
+  background: var(--rule-soft);
+  margin: 8px auto 8px;
+}
+.wordmark .wm-kor {
+  display: block;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  line-height: 1;
 }
 
 /* ==========================================================================
-   TOP BAR (issue info)
+   TOP BAR
    ========================================================================== */
 .top-bar {
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule-soft);
   padding: 10px 0;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: var(--ink-mute);
   text-transform: uppercase;
   background: var(--paper);
@@ -232,15 +197,17 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding-top: 86px; /* space for fixed masthead */
+  padding-top: 116px;
 }
-.top-bar span b { color: var(--ink); font-weight: 400; }
+.top-bar span b { color: var(--ink); font-weight: 500; }
+.top-bar a { color: var(--ink-mute); text-decoration: none; transition: color 0.3s; }
+.top-bar a:hover { color: var(--rose-deep); }
 
 /* ==========================================================================
    HERO
    ========================================================================== */
 .hero {
-  padding: 70px 0 40px;
+  padding: 80px 0 60px;
   position: relative;
 }
 .hero .wrap {
@@ -262,57 +229,54 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   transform: translateY(-2px);
 }
 .hero-meta .label {
-  font-family: 'Tenor Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.35em;
+  font-weight: 500;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
 .hero-meta .folio {
   margin-left: auto;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--ink-mute);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
 }
 
 .hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(56px, 10vw, 148px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(52px, 9.4vw, 140px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--ink);
   margin-bottom: 26px;
 }
-.hero h1 .it { font-style: italic; font-weight: 300; color: var(--rose-deep); }
-.hero h1 .amp {
+.hero h1 .it {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-weight: 300;
-  color: var(--gold);
-  font-size: 1.15em;
-  vertical-align: -0.05em;
+  font-weight: 400;
+  color: var(--rose-deep);
+  letter-spacing: -0.01em;
 }
 .hero h1 .line { display: block; }
 .hero h1 .line.indent { padding-left: 2.2ch; }
 
 .hero-sub {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ink-soft);
   line-height: 1.9;
   max-width: 38ch;
   word-break: keep-all;
   margin-top: 30px;
 }
-.hero-sub .kor-accent { color: var(--ink); font-weight: 400; }
+.hero-sub .kor-accent { color: var(--ink); font-weight: 600; }
 
-/* Right side: image plate + caption */
-.hero-right {
-  position: relative;
-}
+.hero-right { position: relative; }
+
 .plate {
   position: relative;
   aspect-ratio: 3/4;
@@ -325,11 +289,6 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      45deg,
-      transparent 0 14px,
-      color-mix(in srgb, var(--rose) 18%, transparent) 14px 15px
-    ),
     radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--rose) 30%, transparent), transparent 60%),
     linear-gradient(180deg, var(--paper-warm), var(--card));
 }
@@ -347,13 +306,14 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
 }
 .plate .plate-number {
   position: absolute;
-  right: 18px; bottom: 14px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
+  right: 20px; bottom: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
   font-size: 120px;
   line-height: 0.8;
   color: var(--ink);
   opacity: 0.85;
+  letter-spacing: -0.04em;
 }
 .plate-caption {
   margin-top: 14px;
@@ -379,10 +339,11 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 28px;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  padding: 16px 26px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
@@ -395,12 +356,11 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
   background: var(--ink);
   color: var(--paper);
   border-radius: 999px;
-  padding: 20px 34px;
+  padding: 18px 32px;
 }
 .btn-primary:hover {
   background: var(--rose-deep);
   transform: translateY(-2px);
-  letter-spacing: 0.32em;
 }
 .btn-primary .arr {
   width: 22px; height: 1px;
@@ -426,44 +386,6 @@ html[data-theme="noir"] body::before { mix-blend-mode: screen; }
 .btn-ghost:hover { color: var(--rose-deep); border-color: var(--rose-deep); }
 
 /* ==========================================================================
-   MARQUEE RIBBON
-   ========================================================================== */
-.marquee {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 22px 0;
-  overflow: hidden;
-  margin-top: 100px;
-  background: var(--paper-warm);
-}
-.marquee-track {
-  display: flex;
-  gap: 60px;
-  white-space: nowrap;
-  animation: scroll 38s linear infinite;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 38px;
-  color: var(--ink);
-}
-.marquee-track span {
-  display: inline-flex;
-  align-items: center;
-  gap: 60px;
-}
-.marquee-track .star {
-  font-family: 'Tenor Sans', sans-serif;
-  font-style: normal;
-  font-size: 22px;
-  color: var(--gold);
-  letter-spacing: 0.3em;
-}
-@keyframes scroll {
-  to { transform: translateX(-50%); }
-}
-
-/* ==========================================================================
    SECTIONS
    ========================================================================== */
 section.chapter {
@@ -474,36 +396,44 @@ section.chapter {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 60px;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
   align-items: end;
 }
 .chapter-head .no {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.22em;
   color: var(--ink-mute);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .chapter-head .kicker {
-  font-family: 'Tenor Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
-  letter-spacing: 0.35em;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   color: var(--accent);
   text-transform: uppercase;
 }
 .chapter-head h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(42px, 6vw, 92px);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(40px, 5.6vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.025em;
   color: var(--ink);
 }
-.chapter-head h2 em { font-style: italic; color: var(--rose-deep); font-weight: 300; }
+.chapter-head h2 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rose-deep);
+  letter-spacing: -0.01em;
+}
 .chapter-head .lede {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
   font-size: 15px;
   color: var(--ink-soft);
   line-height: 1.9;
@@ -520,7 +450,7 @@ section.chapter {
 }
 .phil {
   padding: 40px 32px 48px;
-  border-right: 1px solid var(--rule);
+  border-right: 1px solid var(--rule-soft);
   border-bottom: 1px solid var(--rule);
   position: relative;
   transition: background 0.45s ease;
@@ -528,43 +458,47 @@ section.chapter {
 .phil:last-child { border-right: none; }
 .phil:hover { background: var(--card); }
 .phil .ph-no {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--rose-deep);
-  font-weight: 300;
-  margin-bottom: 18px;
-}
-.phil .ph-kicker {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 10.5px;
-  letter-spacing: 0.32em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.18em;
   color: var(--ink-mute);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: block;
+  margin-bottom: 32px;
 }
 .phil h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.15;
   margin-bottom: 18px;
   color: var(--ink);
+  letter-spacing: -0.01em;
 }
-.phil h3 em { font-style: italic; color: var(--rose-deep); font-weight: 400; }
+.phil h3 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--rose-deep);
+  font-weight: 400;
+}
+.phil .ph-kor {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
 .phil p {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 14.5px;
   color: var(--ink-soft);
   line-height: 1.9;
   word-break: keep-all;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ==========================================================================
-   SERVICES — editorial list with hover plate
+   SERVICES — editorial list
    ========================================================================== */
 .services-list {
   border-top: 1px solid var(--rule);
@@ -574,43 +508,60 @@ section.chapter {
   grid-template-columns: 80px 1.4fr 1fr 120px;
   gap: 28px;
   padding: 38px 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule-soft);
   align-items: center;
   position: relative;
   cursor: pointer;
-  transition: padding 0.4s ease, background 0.4s ease;
+  transition: padding 0.4s ease;
 }
 .svc-row:hover { padding-left: 18px; padding-right: 18px; }
 .svc-row:hover .svc-name { color: var(--rose-deep); }
-.svc-row:hover .svc-arrow { transform: translateX(8px); color: var(--rose-deep); }
+.svc-row:hover .svc-arrow { transform: translate(6px, -50%); color: var(--rose-deep); }
 
 .svc-no {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--ink-mute);
 }
 .svc-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 48px);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(26px, 3.2vw, 44px);
   line-height: 1.05;
   color: var(--ink);
   transition: color 0.35s ease;
+  letter-spacing: -0.02em;
 }
-.svc-name em { font-style: italic; color: var(--rose-deep); }
+.svc-name em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--rose-deep);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.svc-name .svc-kor {
+  display: block;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink-mute);
+  margin-top: 6px;
+  letter-spacing: 0;
+}
 .svc-desc {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 14px;
   color: var(--ink-soft);
   line-height: 1.8;
   word-break: keep-all;
-  font-weight: 300;
+  font-weight: 400;
 }
 .svc-tags {
-  font-family: 'Tenor Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   color: var(--ink-mute);
   text-transform: uppercase;
   text-align: right;
@@ -621,9 +572,9 @@ section.chapter {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 44px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
   color: var(--ink);
   transition: transform 0.4s ease, color 0.4s ease;
   pointer-events: none;
@@ -656,92 +607,108 @@ section.chapter {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--rose) 40%, transparent), transparent 60%),
-    repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in srgb, var(--ink) 8%, transparent) 18px 19px);
+    radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--rose) 32%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--paper-warm), var(--card));
 }
-.maison-plate::after {
-  content: "SOHEE";
+.maison-plate .badge {
   position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%) rotate(-6deg);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 120px;
-  color: var(--ink);
-  opacity: 0.14;
-  letter-spacing: -0.03em;
-}
-.maison-plate .seal {
-  position: absolute;
-  right: 24px; bottom: 24px;
-  width: 110px; height: 110px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.32em;
-  color: var(--ink);
-  text-transform: uppercase;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  line-height: 1.4;
-  background: var(--paper-warm);
-  animation: seal-rot 30s linear infinite;
+  z-index: 2;
 }
-@keyframes seal-rot { to { transform: rotate(360deg); } }
-.maison-plate .seal span { display: block; }
+.maison-plate .badge .b-main {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+.maison-plate .badge .b-sub {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 10px;
+}
+.maison-plate .badge .b-line {
+  display: block;
+  width: 60px; height: 1px;
+  background: var(--rule-soft);
+  margin: 16px auto;
+}
+.maison-plate .badge .b-est {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+}
 
 .maison h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(44px, 5vw, 78px);
-  line-height: 1.02;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(38px, 4.4vw, 66px);
+  line-height: 1.05;
   color: var(--ink);
   margin: 20px 0 30px;
+  letter-spacing: -0.025em;
+}
+.maison h2 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--rose-deep);
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
-.maison h2 em { font-style: italic; color: var(--rose-deep); font-weight: 300; }
 .maison .kicker {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.35em;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   color: var(--accent);
   text-transform: uppercase;
 }
 .maison p {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 15px;
   color: var(--ink-soft);
   line-height: 2;
   word-break: keep-all;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 20px;
   max-width: 46ch;
 }
 .signature {
   margin-top: 40px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 26px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
   color: var(--ink);
+  letter-spacing: 0.01em;
 }
 .signature .line {
   display: block;
   width: 80px; height: 1px;
   background: var(--ink);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .signature small {
   display: block;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   color: var(--ink-mute);
   text-transform: uppercase;
-  margin-top: 4px;
-  font-style: normal;
+  margin-top: 6px;
 }
 
 /* ==========================================================================
@@ -756,40 +723,47 @@ section.chapter {
 }
 .info-col {
   padding: 70px 50px;
-  border-right: 1px solid var(--rule);
+  border-right: 1px solid var(--rule-soft);
 }
 .info-col:last-child { border-right: none; }
 .info-col .kicker {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.35em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.24em;
   color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 14px;
   display: block;
 }
 .info-col h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: 44px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 38px;
   color: var(--ink);
   margin-bottom: 38px;
+  letter-spacing: -0.02em;
 }
-.info-col h3 em { font-style: italic; color: var(--rose-deep); }
+.info-col h3 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--rose-deep);
+  font-weight: 400;
+}
 
 .hours-row {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
   padding: 16px 0;
-  border-bottom: 1px solid var(--card-edge);
+  border-bottom: 1px solid var(--rule-soft);
   align-items: baseline;
 }
 .hours-row .day {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 15px;
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 500;
 }
 .hours-row .time {
   font-family: 'JetBrains Mono', monospace;
@@ -797,33 +771,33 @@ section.chapter {
   color: var(--ink-soft);
   letter-spacing: 0.06em;
 }
-.hours-row.accent .time { color: var(--rose-deep); font-weight: 400; }
+.hours-row.accent .time { color: var(--rose-deep); font-weight: 500; }
 .hours-row.closed .time { color: var(--ink-mute); }
 
 .address-block {
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 17px;
   line-height: 1.9;
   color: var(--ink);
   margin-bottom: 10px;
+  font-weight: 500;
 }
 .address-block small {
   display: block;
   font-size: 13px;
   color: var(--ink-soft);
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 4px;
 }
 .phone-display {
   margin: 32px 0 28px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 52px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 44px;
   color: var(--rose-deep);
   text-decoration: none;
   display: block;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   transition: color 0.3s;
 }
 .phone-display:hover { color: var(--ink); }
@@ -841,31 +815,35 @@ footer {
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 40px;
   padding-bottom: 60px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule-soft);
 }
 .foot-brand .wordmark { text-align: left; }
-.foot-brand .wordmark .wm-main { font-size: 48px; }
+.foot-brand .wordmark .wm-main { font-size: 34px; }
+.foot-brand .wordmark .wm-sub { font-size: 13px; }
+.foot-brand .wordmark .wm-divider { width: 200px; margin-left: 0; margin-right: 0; }
+.foot-brand .wordmark .wm-kor { font-size: 15px; }
 .foot-brand p {
-  margin-top: 20px;
-  font-family: 'Noto Serif KR', serif;
+  margin-top: 26px;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 14px;
   color: var(--ink-soft);
   line-height: 1.9;
   max-width: 30ch;
   word-break: keep-all;
-  font-weight: 300;
+  font-weight: 400;
 }
 .foot-col h4 {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   color: var(--ink);
   text-transform: uppercase;
   margin-bottom: 22px;
 }
 .foot-col a {
   display: block;
-  font-family: 'Noto Serif KR', serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 14px;
   color: var(--ink-soft);
   text-decoration: none;
@@ -882,8 +860,8 @@ footer {
   gap: 20px;
   flex-wrap: wrap;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: var(--ink-mute);
   text-transform: uppercase;
 }
@@ -893,132 +871,51 @@ footer {
    ========================================================================== */
 .reserve-fab {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 28px;
+  right: 28px;
   z-index: 100;
-  width: 120px;
-  height: 120px;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  color: var(--ink);
-}
-.reserve-fab .ring {
-  position: absolute;
-  inset: 0;
-  animation: seal-rot 22s linear infinite;
-}
-.reserve-fab .ring text {
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  fill: var(--ink);
-  text-transform: uppercase;
-}
-.reserve-fab .center {
-  width: 56px; height: 56px;
-  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 26px 18px 22px;
   background: var(--ink);
   color: var(--paper);
-  display: grid;
-  place-items: center;
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.4s;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 28px;
-}
-.reserve-fab:hover .center {
-  transform: scale(1.1);
-  background: var(--rose-deep);
-}
-
-/* ==========================================================================
-   TWEAKS PANEL
-   ========================================================================== */
-.tweaks-panel {
-  position: fixed;
-  bottom: 32px;
-  left: 32px;
-  z-index: 200;
-  width: 280px;
-  background: var(--card);
-  border: 1px solid var(--ink);
-  padding: 22px;
-  display: none;
-  font-family: 'Tenor Sans', sans-serif;
-  box-shadow: var(--shadow);
-}
-.tweaks-panel.open { display: block; }
-.tweaks-panel h5 {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-.tweaks-panel .tw-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-soft);
-  margin-bottom: 18px;
-  text-transform: none;
-  letter-spacing: 0;
-}
-.tweaks-panel label {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--ink-mute);
-  text-transform: uppercase;
-  margin: 14px 0 8px;
-}
-.theme-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-.theme-row button {
-  padding: 10px 6px;
-  font-family: 'Tenor Sans', sans-serif;
-  font-size: 9.5px;
+  text-decoration: none;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: var(--paper);
-  color: var(--ink);
-  border: 1px solid var(--card-edge);
-  cursor: pointer;
-  transition: all 0.25s;
+  box-shadow: var(--shadow);
+  transition: background 0.35s ease, transform 0.35s ease, padding 0.35s ease;
 }
-.theme-row button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.tweaks-panel .switch {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 11px; letter-spacing: 0.18em; color: var(--ink);
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 14px;
+.reserve-fab .rf-kor {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
-.tweaks-panel input[type="text"] {
-  width: 100%;
-  padding: 9px 10px;
-  border: 1px solid var(--card-edge);
-  background: var(--paper);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink);
+.reserve-fab .rf-arr {
+  width: 20px; height: 1px;
+  background: currentColor;
+  position: relative;
+  transition: width 0.35s ease;
 }
-.tweaks-panel .tog {
-  width: 34px; height: 18px; border-radius: 999px;
-  background: var(--card-edge); position: relative; transition: background 0.3s;
+.reserve-fab .rf-arr::after {
+  content: "";
+  position: absolute;
+  right: 0; top: -3px;
+  width: 6px; height: 6px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
-.tweaks-panel .tog::after {
-  content: ""; position: absolute; top: 2px; left: 2px;
-  width: 14px; height: 14px; border-radius: 50%;
-  background: var(--paper); transition: left 0.3s;
+.reserve-fab:hover {
+  background: var(--rose-deep);
+  transform: translateY(-2px);
 }
-.tweaks-panel .switch.on .tog { background: var(--rose-deep); }
-.tweaks-panel .switch.on .tog::after { left: 18px; }
+.reserve-fab:hover .rf-arr { width: 30px; }
 
 /* ==========================================================================
    REVEAL ANIMATIONS
@@ -1040,18 +937,19 @@ footer {
   .svc-desc, .svc-tags { display: none; }
   .maison .wrap { grid-template-columns: 1fr; gap: 40px; }
   .info-grid { grid-template-columns: 1fr; }
-  .info-col { border-right: none; border-bottom: 1px solid var(--rule); }
+  .info-col { border-right: none; border-bottom: 1px solid var(--rule-soft); }
   .foot-top { grid-template-columns: 1fr 1fr; }
   .mast-left, .mast-right { display: none; }
   .masthead .wrap { grid-template-columns: 1fr; justify-items: center; }
+  .top-bar .wrap { padding-top: 108px; }
 }
 @media (max-width: 600px) {
   .hero h1 .line.indent { padding-left: 1ch; }
   .info-col { padding: 50px 24px; }
   .foot-top { grid-template-columns: 1fr; }
-  .reserve-fab { width: 86px; height: 86px; bottom: 20px; right: 20px; }
-  .reserve-fab .center { width: 42px; height: 42px; font-size: 22px; }
-  .tweaks-panel { left: 20px; right: 20px; bottom: 120px; width: auto; }
+  .reserve-fab { bottom: 18px; right: 18px; padding: 14px 20px; font-size: 11px; }
+  .top-bar { font-size: 10px; }
+  .top-bar .wrap { flex-wrap: wrap; gap: 8px; }
 }
 </style>
 </head>
@@ -1061,18 +959,20 @@ footer {
 <header class="masthead" id="masthead">
   <div class="wrap">
     <div class="mast-left">
-      <a href="#maison"><span>Maison</span><span class="kor">의원소개</span></a>
-      <a href="#philosophy"><span>Philosophie</span><span class="kor">철학</span></a>
-      <a href="#services"><span>Les Soins</span><span class="kor">진료과목</span></a>
+      <a href="#maison"><span>About</span><span class="kor">의원소개</span></a>
+      <a href="#philosophy"><span>Values</span><span class="kor">철학</span></a>
+      <a href="#services"><span>Services</span><span class="kor">진료과목</span></a>
     </div>
     <a href="#" class="wordmark">
-      <span class="wm-main" id="wm-main">Sohee</span>
-      <span class="wm-sub" id="wm-sub">— Clinique —</span>
+      <span class="wm-main">L'EAU LIFT</span>
+      <span class="wm-sub">Clinique</span>
+      <span class="wm-divider"></span>
+      <span class="wm-kor">로리프트 의원 과천</span>
     </a>
     <div class="mast-right">
-      <a href="#info"><span>Heures</span><span class="kor">진료시간</span></a>
+      <a href="#info"><span>Hours</span><span class="kor">진료시간</span></a>
       <a href="#info"><span>Contact</span><span class="kor">오시는길</span></a>
-      <a href="https://booking.naver.com/" target="_blank"><span>Réserver</span><span class="kor">예약하기</span></a>
+      <a href="https://booking.naver.com/" target="_blank" rel="noopener"><span>Reserve</span><span class="kor">예약하기</span></a>
     </div>
   </div>
 </header>
@@ -1080,9 +980,9 @@ footer {
 <!-- ======================= TOP BAR ======================= -->
 <div class="top-bar">
   <div class="wrap">
-    <span>Édition N° <b>VII</b> — Printemps 2026</span>
-    <span>경기도 과천시 · Gwacheon</span>
-    <span>02. 1234. 5678</span>
+    <span>경기도 과천시 · <b>Gwacheon</b></span>
+    <span><a href="tel:02-1234-5678">02. 1234. 5678</a></span>
+    <span><a href="https://booking.naver.com/" target="_blank" rel="noopener">네이버 실시간 예약 <b>→</b></a></span>
   </div>
 </div>
 
@@ -1094,11 +994,11 @@ footer {
       <div class="hero-meta reveal">
         <span class="dot"></span>
         <span class="label">Premium Aesthetic · Dermatology</span>
-        <span class="folio">N° 001 — Couverture</span>
+        <span class="folio">N° 001 — 로리프트 의원</span>
       </div>
 
       <h1>
-        <span class="line reveal">Soft <span class="amp">&amp;</span></span>
+        <span class="line reveal">Soft &amp;</span>
         <span class="line indent reveal"><span class="it">Elegant,</span></span>
         <span class="line reveal">Your Natural</span>
         <span class="line indent reveal"><span class="it">Beauty.</span></span>
@@ -1107,13 +1007,13 @@ footer {
       <div class="rule reveal-rule" style="margin-top: 40px;"></div>
 
       <p class="hero-sub reveal">
-        <span class="kor-accent">소희의원</span>은 피부 본연의 건강함과
+        <span class="kor-accent">로리프트 의원</span>은 피부 본연의 건강함과
         숨겨진 아름다움을 되찾아드립니다. 과하지 않은 섬세한 손길로
         당신만의 빛나는 순간을 빚어냅니다.
       </p>
 
       <div class="cta-row reveal">
-        <a href="https://booking.naver.com/" target="_blank" class="btn btn-primary">
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary">
           네이버 실시간 예약
           <span class="arr"></span>
         </a>
@@ -1123,7 +1023,7 @@ footer {
 
     <div class="hero-right reveal">
       <div class="plate">
-        <div class="plate-mono">Plate I — Maison Sohee</div>
+        <div class="plate-mono">Plate I — L'EAU LIFT</div>
         <div class="plate-number">01</div>
       </div>
       <div class="plate-caption">
@@ -1135,66 +1035,40 @@ footer {
   </div>
 </section>
 
-<!-- ======================= MARQUEE ======================= -->
-<div class="marquee" id="marquee">
-  <div class="marquee-track">
-    <span>
-      Skin · Beauty · Balance
-      <span class="star">✦</span>
-      Dermatologie Premium
-      <span class="star">✦</span>
-      Silhouette &amp; Soin
-      <span class="star">✦</span>
-      Naturellement Vôtre
-      <span class="star">✦</span>
-    </span>
-    <span>
-      Skin · Beauty · Balance
-      <span class="star">✦</span>
-      Dermatologie Premium
-      <span class="star">✦</span>
-      Silhouette &amp; Soin
-      <span class="star">✦</span>
-      Naturellement Vôtre
-      <span class="star">✦</span>
-    </span>
-  </div>
-</div>
-
 <!-- ======================= PHILOSOPHY ======================= -->
-<section class="chapter" id="philosophy">
+<section class="chapter" id="philosophy" style="padding-top: 60px;">
   <div class="wrap">
     <div class="chapter-head">
       <div>
-        <span class="no">Chapitre I — Philosophie</span>
+        <span class="no">01 — Philosophy</span>
         <span class="kicker">About the House</span>
       </div>
       <div>
         <h2 class="reveal">A quiet <em>devotion</em><br/>to the skin you were born with.</h2>
         <p class="lede reveal" style="margin-top: 24px;">
           공장에서 찍어내는 진료가 아닌, 개개인의 피부와 마음에 귀 기울이는 깊이 있는 진료.
-          소희의원은 자연스러움을 가장 높은 가치로 여깁니다.
+          로리프트 의원은 자연스러움을 가장 높은 가치로 여깁니다.
         </p>
       </div>
     </div>
 
     <div class="philosophy-grid">
       <article class="phil reveal">
-        <div class="ph-no">Nº 01</div>
-        <span class="ph-kicker">Consultation</span>
-        <h3>1:1 <em>맞춤</em> 상담</h3>
+        <div class="ph-no">01 / Consultation</div>
+        <div class="ph-kor">1:1 맞춤 상담</div>
+        <h3>Personal <em>care</em></h3>
         <p>공장에서 찍어내는 진료가 아닌, 개개인의 피부 특성과 고민에 깊이 귀 기울이는 섬세한 상담을 진행합니다.</p>
       </article>
       <article class="phil reveal">
-        <div class="ph-no">Nº 02</div>
-        <span class="ph-kicker">Excellence</span>
-        <h3>Premium <em>Solution</em></h3>
+        <div class="ph-no">02 / Excellence</div>
+        <div class="ph-kor">프리미엄 솔루션</div>
+        <h3>Premium <em>solution</em></h3>
         <p>최신 장비와 엄선된 정품 약제만을 사용하여, 안전하고 효과적인 최상의 결과를 약속드립니다.</p>
       </article>
       <article class="phil reveal">
-        <div class="ph-no">Nº 03</div>
-        <span class="ph-kicker">Nature</span>
-        <h3>Natural <em>Grace</em></h3>
+        <div class="ph-no">03 / Nature</div>
+        <div class="ph-kor">자연스러운 아름다움</div>
+        <h3>Natural <em>grace</em></h3>
         <p>인위적이지 않은 자연스러운 아름다움. 일상으로의 빠른 복귀를 고려한 섬세한 시술을 지향합니다.</p>
       </article>
     </div>
@@ -1202,22 +1076,22 @@ footer {
 </section>
 
 <!-- ======================= SERVICES ======================= -->
-<section class="chapter" id="services" style="padding-top: 40px;">
+<section class="chapter" id="services" style="padding-top: 20px;">
   <div class="wrap">
     <div class="chapter-head">
       <div>
-        <span class="no">Chapitre II — Les Soins</span>
-        <span class="kicker">Signature Services</span>
+        <span class="no">02 — Services</span>
+        <span class="kicker">Signature Care</span>
       </div>
       <div>
-        <h2 class="reveal">Atelier of <em>curated</em><br/>skin &amp; body rituals.</h2>
+        <h2 class="reveal">Curated <em>skin &amp; body</em><br/>rituals for every stage.</h2>
       </div>
     </div>
 
     <div class="services-list">
       <div class="svc-row reveal">
         <span class="svc-no">01 / 05</span>
-        <div class="svc-name"><em>Dermatologie</em> 피부과 클리닉</div>
+        <div class="svc-name">Dermatology<span class="svc-kor">피부과 클리닉</span></div>
         <div class="svc-desc">여드름, 흉터 재생부터 색소 질환, 리프팅, 스킨부스터까지 — 건강한 피부를 위한 모든 솔루션.</div>
         <div class="svc-tags">
           <span>Skin</span>
@@ -1229,7 +1103,7 @@ footer {
 
       <div class="svc-row reveal">
         <span class="svc-no">02 / 05</span>
-        <div class="svc-name"><em>Silhouette</em> 비만·체형</div>
+        <div class="svc-name">Silhouette<span class="svc-kor">비만·체형 관리</span></div>
         <div class="svc-desc">개인별 체질 분석을 통한 체계적인 다이어트 설계와 바디 라인 교정을 위한 맞춤 관리.</div>
         <div class="svc-tags">
           <span>Body</span>
@@ -1241,7 +1115,7 @@ footer {
 
       <div class="svc-row reveal">
         <span class="svc-no">03 / 05</span>
-        <div class="svc-name"><em>Privé</em> 프라이빗 케어</div>
+        <div class="svc-name">Private <em>Care</em><span class="svc-kor">프라이빗 케어</span></div>
         <div class="svc-desc">편안하고 안락한 독립된 공간에서 프라이버시를 지키며 온전한 휴식과 케어.</div>
         <div class="svc-tags">
           <span>Private</span>
@@ -1253,7 +1127,7 @@ footer {
 
       <div class="svc-row reveal">
         <span class="svc-no">04 / 05</span>
-        <div class="svc-name"><em>Éclat</em> 톤 &amp; 광채</div>
+        <div class="svc-name"><em>Éclat</em> Tone<span class="svc-kor">톤 &amp; 광채 케어</span></div>
         <div class="svc-desc">피부 톤 균일화와 내면에서 올라오는 자연스러운 광채를 위한 전문가 프로토콜.</div>
         <div class="svc-tags">
           <span>Tone</span>
@@ -1265,7 +1139,7 @@ footer {
 
       <div class="svc-row reveal">
         <span class="svc-no">05 / 05</span>
-        <div class="svc-name"><em>Renaissance</em> 안티에이징</div>
+        <div class="svc-name">Anti-<em>aging</em><span class="svc-kor">안티에이징</span></div>
         <div class="svc-desc">콜라겐 재생·탄력 강화를 위한 고주파·레이저·스킨부스터 결합 프로토콜.</div>
         <div class="svc-tags">
           <span>Anti-Age</span>
@@ -1283,19 +1157,19 @@ footer {
   <div class="wrap">
     <div class="maison-left reveal">
       <div class="maison-plate">
-        <div class="seal">
-          <span>Maison</span>
-          <span>Sohee</span>
-          <span>— est. —</span>
-          <span>MMXXVI</span>
+        <div class="badge">
+          <span class="b-main">L'EAU LIFT</span>
+          <span class="b-sub">Clinique</span>
+          <span class="b-line"></span>
+          <span class="b-est">Est. MMXXVI · Gwacheon</span>
         </div>
       </div>
     </div>
     <div class="maison-right">
-      <span class="kicker reveal">Chapitre III — La Maison</span>
+      <span class="kicker reveal">03 — The House</span>
       <h2 class="reveal">Where <em>science</em> meets a<br/>quiet sense of <em>beauté.</em></h2>
       <p class="reveal">
-        소희의원은 피부과 전문의의 섬세한 손길과, 정성으로 설계된 공간에서 시작됩니다.
+        로리프트 의원은 피부과 전문의의 섬세한 손길과, 정성으로 설계된 공간에서 시작됩니다.
         저희는 '보이는 아름다움'보다 '느껴지는 건강함'을 먼저 생각합니다.
       </p>
       <p class="reveal">
@@ -1304,8 +1178,8 @@ footer {
       </p>
       <div class="signature reveal">
         <span class="line"></span>
-        Dr. Sohee Lee
-        <small>원장 / Director</small>
+        L'EAU LIFT Medical Team
+        <small>원장 · Director</small>
       </div>
     </div>
   </div>
@@ -1316,46 +1190,46 @@ footer {
   <div class="wrap">
     <div class="chapter-head">
       <div>
-        <span class="no">Chapitre IV — Visite</span>
+        <span class="no">04 — Visit</span>
         <span class="kicker">Hours &amp; Contact</span>
       </div>
       <div>
-        <h2 class="reveal"><em>Bienvenue</em><br/>at Sohee.</h2>
+        <h2 class="reveal"><em>Bienvenue</em><br/>at L'EAU LIFT.</h2>
       </div>
     </div>
 
     <div class="info-grid">
       <div class="info-col reveal">
-        <span class="kicker">Les Heures</span>
+        <span class="kicker">Hours</span>
         <h3>진료 <em>시간</em></h3>
         <div class="hours-row">
           <span class="day">월 · 화 · 목 · 금</span>
           <span class="time">10:00 — 19:00</span>
         </div>
         <div class="hours-row accent">
-          <span class="day">수요일 · 야간</span>
+          <span class="day">수요일 · 야간진료</span>
           <span class="time">10:00 — 20:00</span>
         </div>
         <div class="hours-row">
-          <span class="day">점심 · Déjeuner</span>
+          <span class="day">점심 · Lunch</span>
           <span class="time">13:00 — 14:00</span>
         </div>
         <div class="hours-row closed">
           <span class="day">토 · 일 · 공휴일</span>
-          <span class="time">Fermé · 휴진</span>
+          <span class="time">Closed · 휴진</span>
         </div>
       </div>
 
       <div class="info-col reveal" id="contact">
-        <span class="kicker">Adresse</span>
+        <span class="kicker">Address</span>
         <h3>오시는 <em>길</em></h3>
         <div class="address-block">
           경기도 과천시 핑크로 123
-          <small>소희빌딩 3층 · 무료 주차 가능</small>
+          <small>로리프트 빌딩 3층 · 무료 주차 가능</small>
           <small>Gwacheon-si, Gyeonggi-do</small>
         </div>
         <a href="tel:02-1234-5678" class="phone-display">02. 1234. 5678</a>
-        <a href="https://booking.naver.com/" target="_blank" class="btn btn-primary" style="margin-top: 10px;">
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 10px;">
           네이버 실시간 예약
           <span class="arr"></span>
         </a>
@@ -1370,135 +1244,52 @@ footer {
     <div class="foot-top">
       <div class="foot-brand">
         <a href="#" class="wordmark">
-          <span class="wm-main" style="font-size: 56px;" id="foot-wm">Sohee</span>
-          <span class="wm-sub">— Maison de Beauté —</span>
+          <span class="wm-main">L'EAU LIFT</span>
+          <span class="wm-sub">Clinique</span>
+          <span class="wm-divider"></span>
+          <span class="wm-kor">로리프트 의원 과천</span>
         </a>
         <p>피부 본연의 건강함과 숨겨진 아름다움을 찾아드리는 프리미엄 피부과 · 비만클리닉.</p>
       </div>
       <div class="foot-col">
-        <h4>Maison</h4>
-        <a href="#philosophy">Philosophie</a>
-        <a href="#maison">About Dr. Lee</a>
-        <a href="#info">Visite</a>
+        <h4>Clinique</h4>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#maison">About</a>
+        <a href="#info">Visit</a>
       </div>
       <div class="foot-col">
-        <h4>Les Soins</h4>
-        <a href="#services">Dermatologie</a>
+        <h4>Services</h4>
+        <a href="#services">Dermatology</a>
         <a href="#services">Silhouette</a>
-        <a href="#services">Privé</a>
+        <a href="#services">Private Care</a>
       </div>
       <div class="foot-col">
         <h4>Reserve</h4>
-        <a href="https://booking.naver.com/" target="_blank">Naver Booking</a>
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener">Naver Booking</a>
         <a href="tel:02-1234-5678">02. 1234. 5678</a>
         <a href="#info">Directions</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© MMXXVI · 소희의원 All Rights Reserved</span>
+      <span>© 2026 · 로리프트 의원 All Rights Reserved</span>
       <span>사업자등록번호 · 123-45-67890</span>
-      <span>Édition VII · Printemps 2026</span>
+      <span>L'EAU LIFT · Gwacheon</span>
     </div>
   </div>
 </footer>
 
 <!-- ======================= RESERVE FAB ======================= -->
-<a href="https://booking.naver.com/" target="_blank" class="reserve-fab" title="실시간 예약">
-  <svg class="ring" viewBox="0 0 100 100">
-    <defs>
-      <path id="circle" d="M 50,50 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0"/>
-    </defs>
-    <text><textPath href="#circle">RÉSERVER · BOOKING · 예약하기 · RÉSERVER · </textPath></text>
-  </svg>
-  <span class="center">→</span>
+<a href="https://booking.naver.com/" target="_blank" rel="noopener" class="reserve-fab" title="실시간 예약">
+  <span class="rf-kor">예약하기</span>
+  <span class="rf-arr"></span>
 </a>
 
-<!-- ======================= TWEAKS PANEL ======================= -->
-<div class="tweaks-panel" id="tweaks">
-  <h5>Tweaks</h5>
-  <div class="tw-sub">a small dressing room.</div>
-
-  <label>Thème · 무드</label>
-  <div class="theme-row">
-    <button data-theme="editorial">Editorial</button>
-    <button data-theme="boudoir">Boudoir</button>
-    <button data-theme="noir">Noir</button>
-  </div>
-
-  <div class="switch" id="marq-switch">
-    <span>Marquee</span>
-    <span class="tog"></span>
-  </div>
-
-  <label>Wordmark</label>
-  <input type="text" id="inp-main" />
-  <input type="text" id="inp-sub" style="margin-top: 6px; font-size: 11px; letter-spacing: 0.3em; font-family: 'Tenor Sans', sans-serif; font-style: normal; text-transform: uppercase;" />
-</div>
-
 <script>
-// ===== TWEAKS STATE ========================================================
-let state = { ...TWEAK_DEFAULTS };
-
-function applyState() {
-  document.documentElement.setAttribute('data-theme', state.theme);
-  document.querySelectorAll('.theme-row button').forEach(b => {
-    b.classList.toggle('active', b.dataset.theme === state.theme);
-  });
-  document.getElementById('marquee').style.display = state.showMarquee ? '' : 'none';
-  document.getElementById('marq-switch').classList.toggle('on', state.showMarquee);
-
-  const mains = [document.getElementById('wm-main'), document.getElementById('foot-wm')];
-  mains.forEach(el => { if (el) el.textContent = state.clinicName; });
-  const sub = document.getElementById('wm-sub');
-  if (sub) sub.textContent = '— ' + state.clinicSubname + ' —';
-
-  const inpMain = document.getElementById('inp-main');
-  const inpSub = document.getElementById('inp-sub');
-  if (inpMain && document.activeElement !== inpMain) inpMain.value = state.clinicName;
-  if (inpSub && document.activeElement !== inpSub) inpSub.value = state.clinicSubname;
-}
-
-function setState(patch) {
-  state = { ...state, ...patch };
-  applyState();
-  try {
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*');
-  } catch (e) {}
-}
-
-applyState();
-
-// Theme buttons
-document.querySelectorAll('.theme-row button').forEach(b => {
-  b.addEventListener('click', () => setState({ theme: b.dataset.theme }));
-});
-
-// Marquee toggle
-document.getElementById('marq-switch').addEventListener('click', () => {
-  setState({ showMarquee: !state.showMarquee });
-});
-
-// Wordmark inputs
-document.getElementById('inp-main').addEventListener('input', (e) => {
-  setState({ clinicName: e.target.value || 'Sohee' });
-});
-document.getElementById('inp-sub').addEventListener('input', (e) => {
-  setState({ clinicSubname: e.target.value || 'Clinique' });
-});
-
-// ===== EDIT MODE PROTOCOL ==================================================
-window.addEventListener('message', (e) => {
-  const d = e.data || {};
-  if (d.type === '__activate_edit_mode') document.getElementById('tweaks').classList.add('open');
-  if (d.type === '__deactivate_edit_mode') document.getElementById('tweaks').classList.remove('open');
-});
-window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
 // ===== SCROLL EFFECTS ======================================================
 const mast = document.getElementById('masthead');
 window.addEventListener('scroll', () => {
   mast.classList.toggle('compact', window.scrollY > 80);
-});
+}, { passive: true });
 
 // Reveal on scroll
 const io = new IntersectionObserver((entries) => {
