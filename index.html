@@ -8,707 +8,596 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
-   PALETTE
+   TOKENS — restrained, Apple-like restraint
    ========================================================================== */
 :root {
-  --paper:        #FCFAF7;
-  --paper-warm:   #F5F0E9;
-  --ink:          #1A1613;
-  --ink-soft:     #4A4340;
-  --ink-mute:     #8B857F;
-  --rule:         #1A1613;
-  --rule-soft:    rgba(26,22,19,0.12);
-  --rose:         #C58A8A;
-  --rose-deep:    #9B5C6B;
+  --paper:        #FBFBFD;
+  --paper-warm:   #F5F5F7;
+  --ink:          #1D1D1F;
+  --ink-soft:     #424245;
+  --ink-mute:     #86868B;
+  --rule:         rgba(29,29,31,0.14);
+  --rule-soft:    rgba(29,29,31,0.08);
   --accent:       #9B5C6B;
+  --accent-soft:  #C58A8A;
   --card:         #FFFFFF;
-  --card-edge:    rgba(26,22,19,0.08);
-  --shadow:       0 30px 60px -30px rgba(26,22,19,0.18);
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.04), 0 6px 20px -12px rgba(0,0,0,0.12);
+  --shadow-md:    0 10px 40px -18px rgba(0,0,0,0.20);
+
+  /* Apple-style motion curves */
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:  cubic-bezier(0.42, 0, 0.58, 1);
+  --t-fast:       160ms;
+  --t-base:       240ms;
+  --t-slow:       600ms;   /* only for content entrance, never UI feedback */
 }
 
 /* ==========================================================================
    RESET / BASE
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+}
 body {
-  font-family: 'Inter', 'Noto Sans KR', system-ui, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "SF Pro Display", "SF Pro Text",
+    "Inter", "Noto Sans KR",
+    system-ui, sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-::selection { background: var(--rose-deep); color: var(--paper); }
+::selection { background: var(--accent); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
 
 .wrap {
-  width: min(94%, 1360px);
+  width: min(94%, 1120px);
+  margin: 0 auto;
+}
+.wrap-narrow {
+  width: min(94%, 820px);
   margin: 0 auto;
 }
 
-/* Typography primitives */
-.serif   { font-family: 'Cormorant Garamond', serif; }
-.sans    { font-family: 'Inter', sans-serif; }
-.kor     { font-family: 'Noto Sans KR', sans-serif; }
-.mono    { font-family: 'JetBrains Mono', monospace; font-weight: 300; }
-
-.rule {
-  height: 1px;
-  background: var(--rule);
-  width: 100%;
-  transform-origin: left center;
+.serif-it {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.005em;
 }
-.rule.soft { background: var(--rule-soft); }
 
 /* ==========================================================================
-   MASTHEAD / NAV
+   MASTHEAD — thin, blurred, Apple-shape
    ========================================================================== */
 .masthead {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: sticky;
+  top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: saturate(1.1) blur(16px);
+  -webkit-backdrop-filter: saturate(1.1) blur(16px);
   border-bottom: 1px solid var(--rule-soft);
-  transition: padding 0.4s ease;
 }
 .masthead .wrap {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 22px 0;
-  transition: padding 0.4s ease;
+  height: 3.25rem;
 }
-.masthead.compact .wrap { padding: 12px 0; }
-
 .mast-left, .mast-right {
   display: flex;
-  gap: 32px;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  gap: 1.75rem;
+  align-items: center;
+  font-size: 0.8125rem; /* 13px */
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-soft);
 }
 .mast-right { justify-content: flex-end; }
-
 .mast-left a, .mast-right a {
   color: var(--ink-soft);
-  text-decoration: none;
-  position: relative;
-  padding: 4px 0;
-  transition: color 0.3s;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.mast-left a:hover, .mast-right a:hover { color: var(--ink); }
+
+.wordmark {
+  text-align: center;
+  line-height: 1;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  line-height: 1;
+  gap: 0.25rem;
 }
-.mast-left a .kor,
-.mast-right a .kor {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: none;
-  color: var(--ink-mute);
-  transition: color 0.3s;
-}
-.mast-left a:hover, .mast-right a:hover { color: var(--ink); }
-.mast-left a:hover .kor,
-.mast-right a:hover .kor { color: var(--rose-deep); }
-.mast-left a::after, .mast-right a::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -2px;
-  width: 0; height: 1px;
-  background: var(--accent);
-  transition: width 0.35s ease;
-}
-.mast-left a:hover::after, .mast-right a:hover::after { width: 100%; }
-
-/* Wordmark — new L'EAU LIFT identity */
-.wordmark {
-  text-align: center;
-  text-decoration: none;
-  color: var(--ink);
-  line-height: 1;
-  display: inline-block;
-}
-.wordmark .wm-main {
-  display: block;
-  font-family: 'Inter', sans-serif;
+.wm-main {
   font-weight: 700;
-  font-size: 22px;
+  font-size: 0.95rem; /* 15px */
   letter-spacing: 0.02em;
   color: var(--ink);
-  line-height: 1;
 }
-.wordmark .wm-sub {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  margin-top: 5px;
-  color: var(--ink-mute);
-  line-height: 1;
-}
-.wordmark .wm-divider {
-  display: block;
-  width: 140px;
-  height: 1px;
-  background: var(--rule-soft);
-  margin: 8px auto 8px;
-}
-.wordmark .wm-kor {
-  display: block;
-  font-family: 'Noto Sans KR', sans-serif;
+.wm-kor {
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-/* ==========================================================================
-   TOP BAR
-   ========================================================================== */
-.top-bar {
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 10px 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 0.6875rem; /* 11px */
   color: var(--ink-mute);
-  text-transform: uppercase;
-  background: var(--paper);
-  position: relative;
-  z-index: 49;
+  letter-spacing: 0.02em;
 }
-.top-bar .wrap {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 116px;
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.75rem; /* 12px */
+  font-weight: 500;
+  transition: background-color var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
 }
-.top-bar span b { color: var(--ink); font-weight: 500; }
-.top-bar a { color: var(--ink-mute); text-decoration: none; transition: color 0.3s; }
-.top-bar a:hover { color: var(--rose-deep); }
+.nav-cta:hover { background: var(--accent); color: #fff; }
+.nav-cta:active { transform: scale(0.97); }
 
 /* ==========================================================================
-   HERO
+   HERO — centered display, Apple product landing
    ========================================================================== */
 .hero {
-  padding: 80px 0 60px;
-  position: relative;
+  padding: 8rem 0 4.5rem;
+  text-align: center;
 }
-.hero .wrap {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 60px;
-  align-items: end;
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
 }
-.hero-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  margin-bottom: 30px;
-}
-.hero-meta .dot {
-  width: 6px; height: 6px; border-radius: 50%;
+.hero-eyebrow .dot {
+  width: 5px; height: 5px; border-radius: 50%;
   background: var(--accent);
-  display: inline-block;
-  transform: translateY(-2px);
 }
-.hero-meta .label {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.hero-meta .folio {
-  margin-left: auto;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--ink-mute);
-  letter-spacing: 0.12em;
-}
-
 .hero h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: clamp(52px, 9.4vw, 140px);
-  line-height: 0.95;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 8vw, 6.75rem);
+  line-height: 1.02;
   letter-spacing: -0.03em;
   color: var(--ink);
-  margin-bottom: 26px;
+  margin-bottom: 1.25rem;
 }
 .hero h1 .it {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--rose-deep);
+  color: var(--accent);
   letter-spacing: -0.01em;
 }
 .hero h1 .line { display: block; }
-.hero h1 .line.indent { padding-left: 2.2ch; }
-
 .hero-sub {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.0625rem; /* 17px */
   font-weight: 400;
   color: var(--ink-soft);
-  line-height: 1.9;
-  max-width: 38ch;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin: 1.75rem auto 0;
   word-break: keep-all;
-  margin-top: 30px;
 }
 .hero-sub .kor-accent { color: var(--ink); font-weight: 600; }
 
-.hero-right { position: relative; }
-
-.plate {
-  position: relative;
-  aspect-ratio: 3/4;
-  background: var(--card);
-  border: 1px solid var(--card-edge);
-  overflow: hidden;
-}
-.plate::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--rose) 30%, transparent), transparent 60%),
-    linear-gradient(180deg, var(--paper-warm), var(--card));
-}
-.plate .plate-mono {
-  position: absolute;
-  left: 18px; top: 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
-  padding: 6px 10px;
-  border: 1px solid var(--card-edge);
-}
-.plate .plate-number {
-  position: absolute;
-  right: 20px; bottom: 14px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 120px;
-  line-height: 0.8;
-  color: var(--ink);
-  opacity: 0.85;
-  letter-spacing: -0.04em;
-}
-.plate-caption {
-  margin-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--ink-mute);
-  text-transform: uppercase;
-}
-.plate-caption .cap-title { color: var(--ink); }
-
-/* CTAs */
 .cta-row {
-  display: flex;
-  gap: 18px;
+  display: inline-flex;
+  gap: 1.25rem;
   align-items: center;
-  margin-top: 48px;
+  margin-top: 2.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 26px;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  gap: 0.5rem;
+  font-size: 0.9375rem; /* 15px */
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
   cursor: pointer;
   border: none;
   background: none;
   color: var(--ink);
-  transition: all 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition:
+    background-color var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out);
 }
 .btn-primary {
   background: var(--ink);
   color: var(--paper);
   border-radius: 999px;
-  padding: 18px 32px;
+  padding: 0.875rem 1.5rem;
 }
-.btn-primary:hover {
-  background: var(--rose-deep);
-  transform: translateY(-2px);
-}
+.btn-primary:hover { background: var(--accent); }
+.btn-primary:active { transform: scale(0.98); }
 .btn-primary .arr {
-  width: 22px; height: 1px;
-  background: currentColor;
-  position: relative;
-  transition: width 0.4s ease;
+  transition: transform var(--t-fast) var(--ease-out);
 }
-.btn-primary .arr::after {
-  content: "";
-  position: absolute;
-  right: 0; top: -3px;
-  width: 7px; height: 7px;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  transform: rotate(45deg);
-}
-.btn-primary:hover .arr { width: 34px; }
+.btn-primary:hover .arr { transform: translateX(3px); }
 
 .btn-ghost {
-  border-bottom: 1px solid var(--ink);
-  padding: 6px 0;
-}
-.btn-ghost:hover { color: var(--rose-deep); border-color: var(--rose-deep); }
-
-/* ==========================================================================
-   SECTIONS
-   ========================================================================== */
-section.chapter {
-  padding: 140px 0 100px;
-  position: relative;
-}
-.chapter-head {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 60px;
-  margin-bottom: 70px;
-  align-items: end;
-}
-.chapter-head .no {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: var(--ink-mute);
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 14px;
-}
-.chapter-head .kicker {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
   color: var(--accent);
-  text-transform: uppercase;
+  padding: 0.5rem 0;
 }
-.chapter-head h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: clamp(40px, 5.6vw, 80px);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--ink);
+.btn-ghost .arr { transition: transform var(--t-fast) var(--ease-out); }
+.btn-ghost:hover .arr { transform: translateX(4px); }
+
+/* Hero visual plate (big product shot area) */
+.hero-plate-wrap {
+  margin-top: 4rem;
+  padding: 0 1rem;
 }
-.chapter-head h2 em {
-  font-family: 'Cormorant Garamond', serif;
+.hero-plate {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 1120px;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--paper-warm);
+  box-shadow: var(--shadow-md);
+}
+.hero-plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--accent-soft) 30%, transparent), transparent 55%),
+    radial-gradient(ellipse at 80% 80%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
+    linear-gradient(180deg, #FFFCFA, var(--paper-warm));
+}
+.hero-plate::after {
+  content: "L'EAU LIFT";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--rose-deep);
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: var(--ink);
+  opacity: 0.12;
+  letter-spacing: -0.02em;
+}
+.hero-plate .plate-mono {
+  position: absolute;
+  left: 1.25rem; bottom: 1.25rem;
+  font-size: 0.75rem;
+  color: var(--ink-mute);
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   SECTIONS — Apple product page rhythm
+   ========================================================================== */
+section.chapter {
+  padding: 7rem 0 5rem;
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-head .kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.section-head h2 {
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+.section-head h2 em {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
-.chapter-head .lede {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
+.section-head .lede {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.0625rem;
   color: var(--ink-soft);
-  line-height: 1.9;
-  max-width: 48ch;
+  line-height: 1.6;
+  max-width: 42ch;
+  margin: 1.25rem auto 0;
   word-break: keep-all;
 }
 
-/* Philosophy: numbered editorial cards */
+/* Philosophy — 3 minimal cards */
 .philosophy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--rule);
+  gap: 1.25rem;
 }
 .phil {
-  padding: 40px 32px 48px;
-  border-right: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule);
-  position: relative;
-  transition: background 0.45s ease;
+  padding: 2.5rem 2rem 2.75rem;
+  border-radius: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  transition:
+    transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
 }
-.phil:last-child { border-right: none; }
-.phil:hover { background: var(--card); }
+.phil:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--rule);
+}
 .phil .ph-no {
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--ink-mute);
-  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.75rem;
 }
 .phil h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 26px;
+  font-weight: 600;
+  font-size: 1.375rem;
   line-height: 1.15;
-  margin-bottom: 18px;
+  margin-bottom: 0.375rem;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 .phil h3 em {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: var(--rose-deep);
+  color: var(--accent);
   font-weight: 400;
 }
 .phil .ph-kor {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1rem;
   color: var(--ink);
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
 }
 .phil p {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14.5px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.9375rem;
   color: var(--ink-soft);
-  line-height: 1.9;
+  line-height: 1.65;
   word-break: keep-all;
-  font-weight: 400;
 }
 
 /* ==========================================================================
-   SERVICES — editorial list
+   SERVICES — tile grid, Apple product-card style
    ========================================================================== */
-.services-list {
-  border-top: 1px solid var(--rule);
-}
-.svc-row {
+.services-grid {
   display: grid;
-  grid-template-columns: 80px 1.4fr 1fr 120px;
-  gap: 28px;
-  padding: 38px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.svc-tile {
   position: relative;
+  padding: 2rem 1.75rem 2rem;
+  border-radius: 1.25rem;
+  background: var(--paper-warm);
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
   cursor: pointer;
-  transition: padding 0.4s ease;
+  transition:
+    transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
 }
-.svc-row:hover { padding-left: 18px; padding-right: 18px; }
-.svc-row:hover .svc-name { color: var(--rose-deep); }
-.svc-row:hover .svc-arrow { transform: translate(6px, -50%); color: var(--rose-deep); }
-
-.svc-no {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--ink-mute);
-}
-.svc-name {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: clamp(26px, 3.2vw, 44px);
-  line-height: 1.05;
-  color: var(--ink);
-  transition: color 0.35s ease;
-  letter-spacing: -0.02em;
-}
-.svc-name em {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--rose-deep);
-  font-weight: 400;
-  letter-spacing: 0;
-}
-.svc-name .svc-kor {
-  display: block;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--ink-mute);
-  margin-top: 6px;
-  letter-spacing: 0;
-}
-.svc-desc {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14px;
-  color: var(--ink-soft);
-  line-height: 1.8;
-  word-break: keep-all;
-  font-weight: 400;
-}
-.svc-tags {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--ink-mute);
-  text-transform: uppercase;
-  text-align: right;
-}
-.svc-tags span { display: block; margin-bottom: 4px; }
-.svc-arrow {
+.svc-tile::before {
+  content: "";
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 32px;
-  color: var(--ink);
-  transition: transform 0.4s ease, color 0.4s ease;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--accent-soft) 22%, transparent), transparent 45%);
+  opacity: 0.9;
   pointer-events: none;
 }
+.svc-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.svc-tile.wide { grid-column: span 2; }
+.svc-head {
+  position: relative;
+  z-index: 1;
+}
+.svc-kicker {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-mute);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+.svc-name {
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.375rem;
+}
+.svc-name em {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.svc-kor {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.125rem;
+}
+.svc-desc {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  word-break: keep-all;
+  max-width: 32ch;
+}
+.svc-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+}
+.svc-foot .arr { transition: transform var(--t-fast) var(--ease-out); }
+.svc-tile:hover .svc-foot .arr { transform: translateX(4px); }
 
 /* ==========================================================================
-   MAISON — signature two-column feature
+   MAISON — signature feature, Apple hero-style split
    ========================================================================== */
 .maison {
-  padding: 160px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  padding: 7rem 0;
   background: var(--paper-warm);
 }
 .maison .wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  gap: 5rem;
   align-items: center;
 }
 .maison-plate {
   aspect-ratio: 4/5;
-  background: var(--card);
-  border: 1px solid var(--card-edge);
-  position: relative;
+  border-radius: 1.5rem;
   overflow: hidden;
+  position: relative;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
 }
 .maison-plate::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--rose) 32%, transparent), transparent 60%),
-    linear-gradient(180deg, var(--paper-warm), var(--card));
+    radial-gradient(ellipse at 60% 40%, color-mix(in srgb, var(--accent-soft) 34%, transparent), transparent 60%),
+    linear-gradient(180deg, #FFFCFA, var(--paper-warm));
 }
 .maison-plate .badge {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 50%; top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 2;
 }
 .maison-plate .badge .b-main {
   display: block;
-  font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 34px;
-  letter-spacing: 0.04em;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
   color: var(--ink);
   line-height: 1;
 }
 .maison-plate .badge .b-sub {
   display: block;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
   color: var(--ink-mute);
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 .maison-plate .badge .b-line {
   display: block;
-  width: 60px; height: 1px;
-  background: var(--rule-soft);
-  margin: 16px auto;
+  width: 3rem; height: 1px;
+  background: var(--rule);
+  margin: 1rem auto;
 }
 .maison-plate .badge .b-est {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--ink-mute);
-  text-transform: uppercase;
 }
 
+.maison-right .kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 0.75rem;
+}
 .maison h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: clamp(38px, 4.4vw, 66px);
-  line-height: 1.05;
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
   color: var(--ink);
-  margin: 20px 0 30px;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.025em;
 }
 .maison h2 em {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: var(--rose-deep);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
-.maison .kicker {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
   color: var(--accent);
-  text-transform: uppercase;
+  font-weight: 400;
 }
 .maison p {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
   color: var(--ink-soft);
-  line-height: 2;
+  line-height: 1.7;
   word-break: keep-all;
-  font-weight: 400;
-  margin-bottom: 20px;
-  max-width: 46ch;
+  margin-bottom: 1rem;
+  max-width: 42ch;
 }
 .signature {
-  margin-top: 40px;
-  font-family: 'Inter', sans-serif;
+  margin-top: 2rem;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.0625rem;
   color: var(--ink);
-  letter-spacing: 0.01em;
 }
 .signature .line {
   display: block;
-  width: 80px; height: 1px;
+  width: 3rem; height: 1px;
   background: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 .signature small {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 0.22em;
   color: var(--ink-mute);
-  text-transform: uppercase;
-  margin-top: 6px;
+  margin-top: 0.375rem;
+  letter-spacing: 0.02em;
 }
 
 /* ==========================================================================
@@ -717,239 +606,197 @@ section.chapter {
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  gap: 1.25rem;
 }
 .info-col {
-  padding: 70px 50px;
-  border-right: 1px solid var(--rule-soft);
+  padding: 3rem 2.5rem;
+  border-radius: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
 }
-.info-col:last-child { border-right: none; }
 .info-col .kicker {
-  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.24em;
   color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 14px;
+  letter-spacing: 0.02em;
   display: block;
+  margin-bottom: 0.5rem;
 }
 .info-col h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 38px;
+  font-weight: 600;
+  font-size: 1.75rem;
   color: var(--ink);
-  margin-bottom: 38px;
+  margin-bottom: 2rem;
   letter-spacing: -0.02em;
 }
 .info-col h3 em {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  color: var(--rose-deep);
+  color: var(--accent);
   font-weight: 400;
 }
 
 .hours-row {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 20px;
-  padding: 16px 0;
+  gap: 1.25rem;
+  padding: 0.875rem 0;
   border-bottom: 1px solid var(--rule-soft);
   align-items: baseline;
 }
+.hours-row:last-child { border-bottom: none; }
 .hours-row .day {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.9375rem;
   color: var(--ink);
   font-weight: 500;
 }
 .hours-row .time {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 0.875rem;
   color: var(--ink-soft);
-  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
-.hours-row.accent .time { color: var(--rose-deep); font-weight: 500; }
+.hours-row.accent .time { color: var(--accent); font-weight: 600; }
 .hours-row.closed .time { color: var(--ink-mute); }
 
 .address-block {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 17px;
-  line-height: 1.9;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   font-weight: 500;
 }
 .address-block small {
   display: block;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--ink-soft);
   font-weight: 400;
-  margin-top: 4px;
+  margin-top: 0.25rem;
 }
 .phone-display {
-  margin: 32px 0 28px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 44px;
-  color: var(--rose-deep);
-  text-decoration: none;
-  display: block;
+  margin: 1.75rem 0 1.5rem;
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--accent);
+  display: inline-block;
   letter-spacing: -0.015em;
-  transition: color 0.3s;
+  transition: color var(--t-fast) var(--ease-out);
+  font-variant-numeric: tabular-nums;
 }
 .phone-display:hover { color: var(--ink); }
+
+.info-col .btn-primary { margin-top: 0.75rem; }
 
 /* ==========================================================================
    FOOTER
    ========================================================================== */
 footer {
-  padding: 100px 0 40px;
+  padding: 5rem 0 2.5rem;
   background: var(--paper);
-  position: relative;
+  border-top: 1px solid var(--rule-soft);
 }
 .foot-top {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 40px;
-  padding-bottom: 60px;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
   border-bottom: 1px solid var(--rule-soft);
 }
-.foot-brand .wordmark { text-align: left; }
-.foot-brand .wordmark .wm-main { font-size: 34px; }
-.foot-brand .wordmark .wm-sub { font-size: 13px; }
-.foot-brand .wordmark .wm-divider { width: 200px; margin-left: 0; margin-right: 0; }
-.foot-brand .wordmark .wm-kor { font-size: 15px; }
+.foot-brand .wordmark { align-items: flex-start; text-align: left; }
+.foot-brand .wm-main { font-size: 1.375rem; }
+.foot-brand .wm-kor { font-size: 0.875rem; }
 .foot-brand p {
-  margin-top: 26px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14px;
+  margin-top: 1.25rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.875rem;
   color: var(--ink-soft);
-  line-height: 1.9;
-  max-width: 30ch;
+  line-height: 1.7;
+  max-width: 28ch;
   word-break: keep-all;
-  font-weight: 400;
 }
 .foot-col h4 {
-  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.22em;
   color: var(--ink);
-  text-transform: uppercase;
-  margin-bottom: 22px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
 }
 .foot-col a {
   display: block;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 0.875rem;
   color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 10px;
-  transition: color 0.3s;
+  margin-bottom: 0.5rem;
+  transition: color var(--t-fast) var(--ease-out);
 }
-.foot-col a:hover { color: var(--rose-deep); }
+.foot-col a:hover { color: var(--accent); }
 
 .foot-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 36px;
-  gap: 20px;
+  padding-top: 2rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
   color: var(--ink-mute);
-  text-transform: uppercase;
 }
+.foot-bottom a {
+  color: var(--ink-mute);
+  transition: color var(--t-fast) var(--ease-out);
+}
+.foot-bottom a:hover { color: var(--ink); }
 
 /* ==========================================================================
-   FLOATING RESERVE BUTTON
+   REVEAL — content entrance only (600ms, ease-out, prefers-reduced-motion aware)
    ========================================================================== */
-.reserve-fab {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 100;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 18px 26px 18px 22px;
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  border-radius: 999px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  box-shadow: var(--shadow);
-  transition: background 0.35s ease, transform 0.35s ease, padding 0.35s ease;
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+  will-change: opacity, transform;
 }
-.reserve-fab .rf-kor {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
 }
-.reserve-fab .rf-arr {
-  width: 20px; height: 1px;
-  background: currentColor;
-  position: relative;
-  transition: width 0.35s ease;
-}
-.reserve-fab .rf-arr::after {
-  content: "";
-  position: absolute;
-  right: 0; top: -3px;
-  width: 6px; height: 6px;
-  border-top: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  transform: rotate(45deg);
-}
-.reserve-fab:hover {
-  background: var(--rose-deep);
-  transform: translateY(-2px);
-}
-.reserve-fab:hover .rf-arr { width: 30px; }
 
-/* ==========================================================================
-   REVEAL ANIMATIONS
-   ========================================================================== */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity 1.1s cubic-bezier(0.2, 0.7, 0.2, 1), transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.reveal.in { opacity: 1; transform: translateY(0); }
-.reveal-rule { transform: scaleX(0); transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.reveal-rule.in { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
-  .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
-  .chapter-head { grid-template-columns: 1fr; gap: 24px; }
   .philosophy-grid { grid-template-columns: 1fr; }
-  .phil { border-right: none; }
-  .svc-row { grid-template-columns: 40px 1fr; }
-  .svc-desc, .svc-tags { display: none; }
-  .maison .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-tile.wide { grid-column: span 2; }
+  .maison .wrap { grid-template-columns: 1fr; gap: 3rem; }
   .info-grid { grid-template-columns: 1fr; }
-  .info-col { border-right: none; border-bottom: 1px solid var(--rule-soft); }
   .foot-top { grid-template-columns: 1fr 1fr; }
-  .mast-left, .mast-right { display: none; }
-  .masthead .wrap { grid-template-columns: 1fr; justify-items: center; }
-  .top-bar .wrap { padding-top: 108px; }
+  .mast-left { display: none; }
 }
-@media (max-width: 600px) {
-  .hero h1 .line.indent { padding-left: 1ch; }
-  .info-col { padding: 50px 24px; }
+@media (max-width: 640px) {
+  section.chapter { padding: 5rem 0 3rem; }
+  .hero { padding: 5rem 0 3rem; }
+  .hero-plate-wrap { margin-top: 2.5rem; padding: 0; }
+  .hero-plate { border-radius: 1rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .svc-tile.wide { grid-column: span 1; }
   .foot-top { grid-template-columns: 1fr; }
-  .reserve-fab { bottom: 18px; right: 18px; padding: 14px 20px; font-size: 11px; }
-  .top-bar { font-size: 10px; }
-  .top-bar .wrap { flex-wrap: wrap; gap: 8px; }
+  .info-col { padding: 2rem 1.5rem; }
+  .maison { padding: 5rem 0; }
 }
 </style>
 </head>
@@ -959,116 +806,82 @@ footer {
 <header class="masthead" id="masthead">
   <div class="wrap">
     <div class="mast-left">
-      <a href="#maison"><span>About</span><span class="kor">의원소개</span></a>
-      <a href="#philosophy"><span>Values</span><span class="kor">철학</span></a>
-      <a href="#services"><span>Services</span><span class="kor">진료과목</span></a>
+      <a href="#philosophy">Values</a>
+      <a href="#services">Services</a>
+      <a href="#maison">About</a>
     </div>
     <a href="#" class="wordmark">
       <span class="wm-main">L'EAU LIFT</span>
-      <span class="wm-sub">Clinique</span>
-      <span class="wm-divider"></span>
       <span class="wm-kor">로리프트 의원 과천</span>
     </a>
     <div class="mast-right">
-      <a href="#info"><span>Hours</span><span class="kor">진료시간</span></a>
-      <a href="#info"><span>Contact</span><span class="kor">오시는길</span></a>
-      <a href="https://booking.naver.com/" target="_blank" rel="noopener"><span>Reserve</span><span class="kor">예약하기</span></a>
+      <a href="#info">Visit</a>
+      <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="nav-cta">예약</a>
     </div>
   </div>
 </header>
 
-<!-- ======================= TOP BAR ======================= -->
-<div class="top-bar">
-  <div class="wrap">
-    <span>경기도 과천시 · <b>Gwacheon</b></span>
-    <span><a href="tel:02-1234-5678">02. 1234. 5678</a></span>
-    <span><a href="https://booking.naver.com/" target="_blank" rel="noopener">네이버 실시간 예약 <b>→</b></a></span>
-  </div>
-</div>
-
 <!-- ======================= HERO ======================= -->
 <section class="hero">
-  <div class="wrap">
-
-    <div class="hero-left">
-      <div class="hero-meta reveal">
-        <span class="dot"></span>
-        <span class="label">Premium Aesthetic · Dermatology</span>
-        <span class="folio">N° 001 — 로리프트 의원</span>
-      </div>
-
-      <h1>
-        <span class="line reveal">Soft &amp;</span>
-        <span class="line indent reveal"><span class="it">Elegant,</span></span>
-        <span class="line reveal">Your Natural</span>
-        <span class="line indent reveal"><span class="it">Beauty.</span></span>
-      </h1>
-
-      <div class="rule reveal-rule" style="margin-top: 40px;"></div>
-
-      <p class="hero-sub reveal">
-        <span class="kor-accent">로리프트 의원</span>은 피부 본연의 건강함과
-        숨겨진 아름다움을 되찾아드립니다. 과하지 않은 섬세한 손길로
-        당신만의 빛나는 순간을 빚어냅니다.
-      </p>
-
-      <div class="cta-row reveal">
-        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary">
-          네이버 실시간 예약
-          <span class="arr"></span>
-        </a>
-        <a href="#services" class="btn btn-ghost">진료 둘러보기</a>
-      </div>
+  <div class="wrap-narrow">
+    <div class="hero-eyebrow reveal">
+      <span class="dot"></span>
+      <span>Premium Aesthetic · Dermatology</span>
     </div>
 
-    <div class="hero-right reveal">
-      <div class="plate">
-        <div class="plate-mono">Plate I — L'EAU LIFT</div>
-        <div class="plate-number">01</div>
-      </div>
-      <div class="plate-caption">
-        <span class="cap-title">Treatment Atelier</span>
-        <span>Gwacheon · 2026</span>
-      </div>
-    </div>
+    <h1 class="reveal">
+      <span class="line">Soft &amp; <span class="it">Elegant,</span></span>
+      <span class="line">Your Natural <span class="it">Beauty.</span></span>
+    </h1>
 
+    <p class="hero-sub reveal">
+      <span class="kor-accent">로리프트 의원</span>은 피부 본연의 건강함과 숨겨진 아름다움을 되찾아드립니다.
+      과하지 않은 섬세한 손길로 당신만의 빛나는 순간을 빚어냅니다.
+    </p>
+
+    <div class="cta-row reveal">
+      <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary">
+        네이버 실시간 예약 <span class="arr">→</span>
+      </a>
+      <a href="#services" class="btn btn-ghost">
+        진료 둘러보기 <span class="arr">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-plate-wrap reveal">
+    <div class="hero-plate">
+      <span class="plate-mono">Treatment Atelier · Gwacheon</span>
+    </div>
   </div>
 </section>
 
 <!-- ======================= PHILOSOPHY ======================= -->
-<section class="chapter" id="philosophy" style="padding-top: 60px;">
+<section class="chapter" id="philosophy">
   <div class="wrap">
-    <div class="chapter-head">
-      <div>
-        <span class="no">01 — Philosophy</span>
-        <span class="kicker">About the House</span>
-      </div>
-      <div>
-        <h2 class="reveal">A quiet <em>devotion</em><br/>to the skin you were born with.</h2>
-        <p class="lede reveal" style="margin-top: 24px;">
-          공장에서 찍어내는 진료가 아닌, 개개인의 피부와 마음에 귀 기울이는 깊이 있는 진료.
-          로리프트 의원은 자연스러움을 가장 높은 가치로 여깁니다.
-        </p>
-      </div>
+    <div class="section-head reveal">
+      <span class="kicker">Philosophy</span>
+      <h2>A quiet <em>devotion</em> to the skin you were born with.</h2>
+      <p class="lede">공장에서 찍어내는 진료가 아닌, 개개인의 피부와 마음에 귀 기울이는 깊이 있는 진료. 로리프트 의원은 자연스러움을 가장 높은 가치로 여깁니다.</p>
     </div>
 
     <div class="philosophy-grid">
       <article class="phil reveal">
-        <div class="ph-no">01 / Consultation</div>
+        <div class="ph-no">01 · Consultation</div>
         <div class="ph-kor">1:1 맞춤 상담</div>
-        <h3>Personal <em>care</em></h3>
+        <h3>Personal <em>care.</em></h3>
         <p>공장에서 찍어내는 진료가 아닌, 개개인의 피부 특성과 고민에 깊이 귀 기울이는 섬세한 상담을 진행합니다.</p>
       </article>
       <article class="phil reveal">
-        <div class="ph-no">02 / Excellence</div>
+        <div class="ph-no">02 · Excellence</div>
         <div class="ph-kor">프리미엄 솔루션</div>
-        <h3>Premium <em>solution</em></h3>
+        <h3>Premium <em>solution.</em></h3>
         <p>최신 장비와 엄선된 정품 약제만을 사용하여, 안전하고 효과적인 최상의 결과를 약속드립니다.</p>
       </article>
       <article class="phil reveal">
-        <div class="ph-no">03 / Nature</div>
+        <div class="ph-no">03 · Nature</div>
         <div class="ph-kor">자연스러운 아름다움</div>
-        <h3>Natural <em>grace</em></h3>
+        <h3>Natural <em>grace.</em></h3>
         <p>인위적이지 않은 자연스러운 아름다움. 일상으로의 빠른 복귀를 고려한 섬세한 시술을 지향합니다.</p>
       </article>
     </div>
@@ -1076,78 +889,63 @@ footer {
 </section>
 
 <!-- ======================= SERVICES ======================= -->
-<section class="chapter" id="services" style="padding-top: 20px;">
+<section class="chapter" id="services">
   <div class="wrap">
-    <div class="chapter-head">
-      <div>
-        <span class="no">02 — Services</span>
-        <span class="kicker">Signature Care</span>
-      </div>
-      <div>
-        <h2 class="reveal">Curated <em>skin &amp; body</em><br/>rituals for every stage.</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="kicker">Services</span>
+      <h2>Curated <em>skin &amp; body</em> rituals.</h2>
     </div>
 
-    <div class="services-list">
-      <div class="svc-row reveal">
-        <span class="svc-no">01 / 05</span>
-        <div class="svc-name">Dermatology<span class="svc-kor">피부과 클리닉</span></div>
-        <div class="svc-desc">여드름, 흉터 재생부터 색소 질환, 리프팅, 스킨부스터까지 — 건강한 피부를 위한 모든 솔루션.</div>
-        <div class="svc-tags">
-          <span>Skin</span>
-          <span>Lifting</span>
-          <span>Booster</span>
+    <div class="services-grid">
+      <a class="svc-tile wide reveal" href="#services">
+        <div class="svc-head">
+          <div class="svc-kicker">01 · Featured</div>
+          <div class="svc-name">Dermatology</div>
+          <div class="svc-kor">피부과 클리닉</div>
+          <p class="svc-desc">여드름·흉터 재생부터 색소, 리프팅, 스킨부스터까지 — 건강한 피부를 위한 모든 솔루션.</p>
         </div>
-        <span class="svc-arrow">→</span>
-      </div>
+        <div class="svc-foot">자세히 보기 <span class="arr">→</span></div>
+      </a>
 
-      <div class="svc-row reveal">
-        <span class="svc-no">02 / 05</span>
-        <div class="svc-name">Silhouette<span class="svc-kor">비만·체형 관리</span></div>
-        <div class="svc-desc">개인별 체질 분석을 통한 체계적인 다이어트 설계와 바디 라인 교정을 위한 맞춤 관리.</div>
-        <div class="svc-tags">
-          <span>Body</span>
-          <span>Diet</span>
-          <span>Contour</span>
+      <a class="svc-tile reveal" href="#services">
+        <div class="svc-head">
+          <div class="svc-kicker">02</div>
+          <div class="svc-name">Silhouette</div>
+          <div class="svc-kor">비만·체형 관리</div>
+          <p class="svc-desc">체계적인 다이어트 설계와 바디 라인 교정을 위한 맞춤 관리.</p>
         </div>
-        <span class="svc-arrow">→</span>
-      </div>
+        <div class="svc-foot">자세히 보기 <span class="arr">→</span></div>
+      </a>
 
-      <div class="svc-row reveal">
-        <span class="svc-no">03 / 05</span>
-        <div class="svc-name">Private <em>Care</em><span class="svc-kor">프라이빗 케어</span></div>
-        <div class="svc-desc">편안하고 안락한 독립된 공간에서 프라이버시를 지키며 온전한 휴식과 케어.</div>
-        <div class="svc-tags">
-          <span>Private</span>
-          <span>VIP</span>
-          <span>Suite</span>
+      <a class="svc-tile reveal" href="#services">
+        <div class="svc-head">
+          <div class="svc-kicker">03</div>
+          <div class="svc-name">Private <em>Care</em></div>
+          <div class="svc-kor">프라이빗 케어</div>
+          <p class="svc-desc">독립된 공간에서 프라이버시를 지키며 온전한 휴식과 케어.</p>
         </div>
-        <span class="svc-arrow">→</span>
-      </div>
+        <div class="svc-foot">자세히 보기 <span class="arr">→</span></div>
+      </a>
 
-      <div class="svc-row reveal">
-        <span class="svc-no">04 / 05</span>
-        <div class="svc-name"><em>Éclat</em> Tone<span class="svc-kor">톤 &amp; 광채 케어</span></div>
-        <div class="svc-desc">피부 톤 균일화와 내면에서 올라오는 자연스러운 광채를 위한 전문가 프로토콜.</div>
-        <div class="svc-tags">
-          <span>Tone</span>
-          <span>Glow</span>
-          <span>Peel</span>
+      <a class="svc-tile reveal" href="#services">
+        <div class="svc-head">
+          <div class="svc-kicker">04</div>
+          <div class="svc-name"><em>Éclat</em> Tone</div>
+          <div class="svc-kor">톤 &amp; 광채 케어</div>
+          <p class="svc-desc">피부 톤 균일화와 내면의 자연스러운 광채를 위한 프로토콜.</p>
         </div>
-        <span class="svc-arrow">→</span>
-      </div>
+        <div class="svc-foot">자세히 보기 <span class="arr">→</span></div>
+      </a>
 
-      <div class="svc-row reveal">
-        <span class="svc-no">05 / 05</span>
-        <div class="svc-name">Anti-<em>aging</em><span class="svc-kor">안티에이징</span></div>
-        <div class="svc-desc">콜라겐 재생·탄력 강화를 위한 고주파·레이저·스킨부스터 결합 프로토콜.</div>
-        <div class="svc-tags">
-          <span>Anti-Age</span>
-          <span>Firming</span>
-          <span>RF</span>
+      <a class="svc-tile reveal" href="#services">
+        <div class="svc-head">
+          <div class="svc-kicker">05</div>
+          <div class="svc-name">Anti-<em>aging</em></div>
+          <div class="svc-kor">안티에이징</div>
+          <p class="svc-desc">고주파·레이저·스킨부스터를 결합한 콜라겐 재생 프로토콜.</p>
         </div>
-        <span class="svc-arrow">→</span>
-      </div>
+        <div class="svc-foot">자세히 보기 <span class="arr">→</span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -1161,21 +959,15 @@ footer {
           <span class="b-main">L'EAU LIFT</span>
           <span class="b-sub">Clinique</span>
           <span class="b-line"></span>
-          <span class="b-est">Est. MMXXVI · Gwacheon</span>
+          <span class="b-est">Est. 2026 · Gwacheon</span>
         </div>
       </div>
     </div>
     <div class="maison-right">
-      <span class="kicker reveal">03 — The House</span>
-      <h2 class="reveal">Where <em>science</em> meets a<br/>quiet sense of <em>beauté.</em></h2>
-      <p class="reveal">
-        로리프트 의원은 피부과 전문의의 섬세한 손길과, 정성으로 설계된 공간에서 시작됩니다.
-        저희는 '보이는 아름다움'보다 '느껴지는 건강함'을 먼저 생각합니다.
-      </p>
-      <p class="reveal">
-        과천의 조용한 골목, 작은 응접실 같은 진료실에서 — 당신의 하루를
-        한 장의 사진처럼 아름답게 담아드리고자 합니다.
-      </p>
+      <span class="kicker reveal">The Clinic</span>
+      <h2 class="reveal">Where <em>science</em> meets a quiet sense of <em>beauté.</em></h2>
+      <p class="reveal">로리프트 의원은 피부과 전문의의 섬세한 손길과, 정성으로 설계된 공간에서 시작됩니다. 저희는 '보이는 아름다움'보다 '느껴지는 건강함'을 먼저 생각합니다.</p>
+      <p class="reveal">과천의 조용한 골목, 작은 응접실 같은 진료실에서 — 당신의 하루를 한 장의 사진처럼 아름답게 담아드리고자 합니다.</p>
       <div class="signature reveal">
         <span class="line"></span>
         L'EAU LIFT Medical Team
@@ -1186,16 +978,11 @@ footer {
 </section>
 
 <!-- ======================= INFO ======================= -->
-<section class="chapter" id="info" style="padding-top: 140px;">
+<section class="chapter" id="info">
   <div class="wrap">
-    <div class="chapter-head">
-      <div>
-        <span class="no">04 — Visit</span>
-        <span class="kicker">Hours &amp; Contact</span>
-      </div>
-      <div>
-        <h2 class="reveal"><em>Bienvenue</em><br/>at L'EAU LIFT.</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="kicker">Visit</span>
+      <h2><em>Bienvenue</em> at L'EAU LIFT.</h2>
     </div>
 
     <div class="info-grid">
@@ -1216,7 +1003,7 @@ footer {
         </div>
         <div class="hours-row closed">
           <span class="day">토 · 일 · 공휴일</span>
-          <span class="time">Closed · 휴진</span>
+          <span class="time">휴진</span>
         </div>
       </div>
 
@@ -1229,9 +1016,8 @@ footer {
           <small>Gwacheon-si, Gyeonggi-do</small>
         </div>
         <a href="tel:02-1234-5678" class="phone-display">02. 1234. 5678</a>
-        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 10px;">
-          네이버 실시간 예약
-          <span class="arr"></span>
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-primary">
+          네이버 실시간 예약 <span class="arr">→</span>
         </a>
       </div>
     </div>
@@ -1245,8 +1031,6 @@ footer {
       <div class="foot-brand">
         <a href="#" class="wordmark">
           <span class="wm-main">L'EAU LIFT</span>
-          <span class="wm-sub">Clinique</span>
-          <span class="wm-divider"></span>
           <span class="wm-kor">로리프트 의원 과천</span>
         </a>
         <p>피부 본연의 건강함과 숨겨진 아름다움을 찾아드리는 프리미엄 피부과 · 비만클리닉.</p>
@@ -1273,39 +1057,43 @@ footer {
     <div class="foot-bottom">
       <span>© 2026 · 로리프트 의원 All Rights Reserved</span>
       <span>사업자등록번호 · 123-45-67890</span>
-      <span>L'EAU LIFT · Gwacheon</span>
     </div>
   </div>
 </footer>
 
-<!-- ======================= RESERVE FAB ======================= -->
-<a href="https://booking.naver.com/" target="_blank" rel="noopener" class="reserve-fab" title="실시간 예약">
-  <span class="rf-kor">예약하기</span>
-  <span class="rf-arr"></span>
-</a>
-
 <script>
-// ===== SCROLL EFFECTS ======================================================
-const mast = document.getElementById('masthead');
-window.addEventListener('scroll', () => {
-  mast.classList.toggle('compact', window.scrollY > 80);
-}, { passive: true });
+// ===== SCROLL REVEAL — content entrance, respects reduced motion ==========
+(function () {
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Reveal on scroll
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(en => {
-    if (en.isIntersecting) {
-      en.target.classList.add('in');
-      io.unobserve(en.target);
-    }
+  const nodes = document.querySelectorAll(".reveal");
+
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    nodes.forEach((n) => n.classList.add("in"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
+      });
+    },
+    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  nodes.forEach((n) => io.observe(n));
+
+  // Stagger hero-only reveals for a gentle sequence
+  document.querySelectorAll(".hero .reveal").forEach((el, i) => {
+    el.style.transitionDelay = 80 * i + "ms";
   });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal, .reveal-rule').forEach(el => io.observe(el));
-
-// Stagger hero reveals
-document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-  el.style.transitionDelay = (0.1 + i * 0.1) + 's';
-});
+})();
 </script>
 </body>
 </html>
