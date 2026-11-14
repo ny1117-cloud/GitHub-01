@@ -6,6 +6,10 @@
 <title>L'EAU LIFT Clinique · 로리프트 의원 과천</title>
 <meta name="description" content="로리프트 의원 과천 — 피부, 체형, 안티에이징. 본연의 아름다움을 되찾는 프리미엄 클리닉." />
 
+<link rel="alternate" hreflang="ko" href="https://soheeclinic.com/" />
+<link rel="alternate" hreflang="en" href="https://soheeclinic.com/en/" />
+<link rel="alternate" hreflang="ja" href="https://soheeclinic.com/ja/" />
+<link rel="alternate" hreflang="x-default" href="https://soheeclinic.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+KR:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -851,7 +855,7 @@ footer {
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
-  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-links > a:not(.nav-cta) { display: none; }
   .about .wrap { grid-template-columns: 1fr; gap: 3rem; }
   .visit-grid { grid-template-columns: 1fr; gap: 3rem; }
   .phil-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1042,6 +1046,12 @@ footer .brand .b-kor { color: rgba(255,255,255,0.45); }
 .foot-meta { color: rgba(255,255,255,0.38); }
 
 @media (max-width: 640px) { .hero-coords { display: none; } }
+/* language switcher */
+.lang { display: inline-flex; gap: 0.125rem; padding: 0.1875rem; border: 1px solid rgba(28,29,33,0.12); border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.04em; }
+.lang a { padding: 0.25rem 0.5rem; border-radius: 999px; color: var(--ink-3); transition: color var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out); }
+.lang a:hover { color: var(--graphite); }
+.lang a[aria-current="page"] { background: var(--graphite); color: #fff; }
+@media (max-width: 640px) { .nav-links { gap: 0.75rem; } .brand .b-kor { display: none; } }
 </style>
 </head>
 <body>
@@ -1061,6 +1071,7 @@ footer .brand .b-kor { color: rgba(255,255,255,0.45); }
       <a href="#about">About</a>
       <a href="#visit">Visit</a>
       <a href="https://blog.naver.com/nespresso" target="_blank" rel="noopener">Blog</a>
+      <span class="lang" aria-label="Language"><a href="/" hreflang="ko" lang="ko" aria-current="page">KO</a><a href="/en/" hreflang="en" lang="en">EN</a><a href="/ja/" hreflang="ja" lang="ja">JA</a></span>
       <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="nav-cta">예약하기</a>
     </div>
   </div>
@@ -1100,7 +1111,7 @@ footer .brand .b-kor { color: rgba(255,255,255,0.45); }
     </div>
     <figure class="hero-photo reveal" id="heroPhoto">
       <div class="ph-art" aria-hidden="true"><span class="sun"></span><span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="mist"></span></div>
-      <img src="hero.jpg" alt="편안한 자연광이 드는 로리프트 의원 공간" onerror="this.remove()" />
+      <img src="/hero.jpg" alt="편안한 자연광이 드는 로리프트 의원 공간" onerror="this.remove()" />
       <figcaption class="ph-chip"><span class="dot"></span>Natural · Calm · Private</figcaption>
     </figure>
   </div>
