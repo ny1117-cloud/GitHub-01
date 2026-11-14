@@ -8,21 +8,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+KR:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+KR:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
    TOKENS
    ========================================================================== */
 :root {
-  --bg:       #FFFFFF;
-  --bg-2:     #F5F6F8;
+  --bg:       #F7F7F8;
+  --bg-2:     #EDEDF0;
+  --graphite: #1C1D21;
+  --pink:     #D8A1A4;
+  --pink-soft:#EBC9C9;
+  --pink-deep:#B7787D;
+  --pink-ink: #9E5F66;
   --dark:     #0E0F11;
   --ink:      #111214;
   --ink-2:    #56585E;
   --ink-3:    #9A9CA3;
   --line:     rgba(17,18,20,0.10);
-  --accent:   #6F8FA6;
+  --accent:   #B7787D;
   --mist-a:   #DCE7EF;
   --mist-b:   #EEF3F7;
   --mist-c:   #C9D9E5;
@@ -634,7 +639,7 @@ a { color: inherit; text-decoration: none; }
 .water.w1 .body { background: linear-gradient(180deg, rgba(201,217,229,0.75), rgba(111,143,166,0.55)); }
 .water.w1 svg path { fill: rgba(201,217,229,0.75); }
 .water.w1 svg { animation: flow 11s linear infinite; }
-.water.w2 { height: 40%; }
+.water.w2 { height: 30%; }
 .water.w2 .body { background: linear-gradient(180deg, rgba(111,143,166,0.55), rgba(64,92,112,0.7)); }
 .water.w2 svg path { fill: rgba(111,143,166,0.55); }
 .water.w2 svg { animation: flow 7s linear infinite reverse; }
@@ -861,6 +866,114 @@ footer {
   .sec-head { flex-direction: column; align-items: flex-start; }
   .scroll-cue { display: none; }
 }
+/* ==========================================================================
+   THEME — Indian pink × graphite
+   ========================================================================== */
+.label { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 400; font-size: 0.6875rem; letter-spacing: 0.08em; }
+::selection { background: var(--pink); color: var(--graphite); }
+
+/* nav — dark glass */
+.nav::before { background: rgba(20,21,24,0.5); border-bottom: 1px solid rgba(255,255,255,0.08); opacity: 1; }
+.nav.scrolled::before { background: rgba(20,21,24,0.82); }
+.brand .b-main { color: #fff; }
+.brand .b-kor { color: rgba(255,255,255,0.5); }
+.nav-links { color: rgba(255,255,255,0.65); }
+.nav-links a:hover { color: #fff; }
+.nav-cta { background: linear-gradient(120deg, var(--pink), var(--pink-soft)); color: var(--graphite) !important; }
+.nav-cta:hover { background: #fff; }
+.progress { background: linear-gradient(90deg, var(--pink-deep), var(--pink), #C9CBD1); }
+
+/* hero — graphite with pink light + tech grid */
+.hero { background: radial-gradient(120% 90% at 80% 10%, #2B2C32 0%, #16171A 62%); color: #fff; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 65% 40%, #000 25%, transparent 80%);
+          mask-image: radial-gradient(ellipse 75% 70% at 65% 40%, #000 25%, transparent 80%);
+}
+.orb-1 { background: radial-gradient(circle at 40% 40%, rgba(235,185,187,0.8), rgba(183,120,125,0.38) 45%, transparent 70%); opacity: 0.85; }
+.orb-2 { background: radial-gradient(circle, rgba(201,203,209,0.32), transparent 70%); }
+.hero-eyebrow .label { color: rgba(255,255,255,0.55); }
+.hero-eyebrow .dot { background: var(--pink); }
+.hero-eyebrow .dot::after { border-color: var(--pink); }
+.hero h1 { color: #F4F4F6; }
+.hero h1 strong {
+  background: linear-gradient(100deg, #FFFFFF 0%, var(--pink-soft) 30%, var(--pink) 55%, #C9CBD1 80%, #FFFFFF 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: sheen 9s ease-in-out infinite alternate;
+}
+@keyframes sheen { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+.hero-sub { color: rgba(255,255,255,0.62); }
+.hero-sub b { color: #fff; }
+.hero .btn-solid { background: linear-gradient(120deg, var(--pink), var(--pink-soft)); color: var(--graphite); }
+.hero .btn-solid:hover { background: #fff; }
+.hero .btn-line { color: rgba(255,255,255,0.7); }
+.hero .btn-line:hover { color: #fff; }
+.hero-foot::before { background: rgba(255,255,255,0.14); }
+.stat .n { color: #fff; }
+.stat .l { color: rgba(255,255,255,0.5); }
+.scroll-cue { background: rgba(255,255,255,0.15); }
+.scroll-cue::after { background: var(--pink); }
+.hero-coords {
+  position: absolute; right: 4vw; bottom: 2rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.6875rem;
+  letter-spacing: 0.08em; line-height: 1.6; text-align: right;
+  color: rgba(255,255,255,0.38);
+}
+
+/* statement — pink-to-gray light band */
+.statement { background: linear-gradient(135deg, #F4E5E4 0%, #ECECEF 55%, #E1E2E6 100%); color: var(--graphite); }
+.statement .label { color: var(--ink-3); }
+.statement .en { color: var(--ink-2); }
+.statement h2 b { color: var(--pink-ink); }
+.statement .orb-3 { background: radial-gradient(circle, rgba(216,161,164,0.55), transparent 70%); }
+
+/* headings — graphite to pink gradient */
+.sec-head h2 strong, .about h2 strong {
+  background: linear-gradient(100deg, var(--graphite) 0%, #4A4B52 45%, var(--pink-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.phil .p-no {
+  background: linear-gradient(160deg, #B9BBC2, var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* service cards */
+.card { box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 2px rgba(28,29,33,0.04); }
+.card:nth-child(1) { --card-grad: linear-gradient(160deg, #F7EDEC 0%, #E9CACA 100%); }
+.card:nth-child(2) { --card-grad: linear-gradient(160deg, #F5F5F7 0%, #DCDDE2 100%); }
+.card:nth-child(3) { --card-grad: linear-gradient(160deg, #F1E4E5 0%, #DDB6B8 60%, #CDA3A6 100%); }
+.card:nth-child(4) { --card-grad: linear-gradient(160deg, #FBFBFC 0%, #E4E5E9 100%); }
+.card:nth-child(5) { --card-grad: radial-gradient(circle at 85% 12%, rgba(216,161,164,0.5), transparent 55%), linear-gradient(160deg, #1E1F23 0%, #2C2D33 100%); }
+.rail-bar span { background: linear-gradient(90deg, var(--pink-deep), var(--pink)); }
+
+/* about — pink & gray water */
+.about { background: var(--bg-2); }
+.plate { background: linear-gradient(180deg, #FFFFFF 0%, #F4EAEA 50%, #E8D3D4 100%); }
+.water.w1 .body { background: linear-gradient(180deg, #EAC6C7, #D9A6A9); }
+.water.w1 svg path { fill: #EAC6C7; }
+.water.w2 .body { background: linear-gradient(180deg, #B3AEB3, #3A3A40); }
+.water.w2 svg path { fill: #B3AEB3; }
+.plate .ring::after { background: var(--pink-deep); }
+
+/* visit */
+.hours-row.hi .t { color: var(--pink-ink); }
+.phone:hover { color: var(--pink-deep); }
+.btn-solid { background: var(--graphite); }
+.btn-solid:hover { background: var(--pink-deep); }
+
+/* footer — dark bookend */
+footer { background: #16171A; border-top: 0; color: #fff; }
+footer .brand .b-kor { color: rgba(255,255,255,0.45); }
+.foot-links { color: rgba(255,255,255,0.6); }
+.foot-links a:hover { color: var(--pink); }
+.foot-meta { color: rgba(255,255,255,0.38); }
+
+@media (max-width: 640px) { .hero-coords { display: none; } }
 </style>
 </head>
 <body>
@@ -919,6 +1032,7 @@ footer {
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"></div>
+  <div class="hero-coords" aria-hidden="true">37.43°N · 126.99°E<br/>GWACHEON · KR</div>
 </section>
 
 <!-- STATEMENT -->
@@ -1313,7 +1427,7 @@ footer {
         if (rr <= 0) continue;
         ctx.beginPath();
         ctx.ellipse(g.x, g.y, rr, rr * 0.42, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(111,143,166," + (g.life * (0.32 - k * 0.08)).toFixed(3) + ")";
+        ctx.strokeStyle = "rgba(235,185,187," + (g.life * (0.32 - k * 0.08)).toFixed(3) + ")";
         ctx.lineWidth = 1;
         ctx.stroke();
       }
