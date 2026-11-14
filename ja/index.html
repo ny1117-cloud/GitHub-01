@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>L'EAU LIFT Clinique · ロリフト医院 果川</title>
+<meta name="description" content="ロリフト医院（韓国・果川）。肌、ボディ、エイジングケア。本来の美しさを取り戻すプレミアムクリニック。" />
+
+<link rel="alternate" hreflang="ko" href="https://soheeclinic.com/" />
+<link rel="alternate" hreflang="en" href="https://soheeclinic.com/en/" />
+<link rel="alternate" hreflang="ja" href="https://soheeclinic.com/ja/" />
+<link rel="alternate" hreflang="x-default" href="https://soheeclinic.com/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+:root {
+  --bg:       #F7F7F8;
+  --bg-2:     #EDEDF0;
+  --graphite: #1C1D21;
+  --pink:     #D8A1A4;
+  --pink-soft:#EBC9C9;
+  --pink-deep:#B7787D;
+  --pink-ink: #9E5F66;
+  --dark:     #0E0F11;
+  --ink:      #111214;
+  --ink-2:    #56585E;
+  --ink-3:    #9A9CA3;
+  --line:     rgba(17,18,20,0.10);
+  --accent:   #B7787D;
+  --mist-a:   #DCE7EF;
+  --mist-b:   #EEF3F7;
+  --mist-c:   #C9D9E5;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast:   160ms;
+  --t-base:   240ms;
+  --t-enter:  700ms;
+
+  --radius:   1.75rem;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+               "Inter", "Noto Sans JP", system-ui, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--ink); color: #fff; }
+a { color: inherit; text-decoration: none; }
+
+.wrap { width: min(92%, 1240px); margin: 0 auto; }
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 4rem;
+}
+.nav::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(1.2) blur(18px);
+  -webkit-backdrop-filter: saturate(1.2) blur(18px);
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+.nav.scrolled::before { opacity: 1; }
+.nav .wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand { display: flex; align-items: baseline; gap: 0.625rem; line-height: 1; }
+.brand .b-main { font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.06em; }
+.brand .b-kor {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.nav-links a { transition: color var(--t-fast) var(--ease-out); }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff !important;
+  transition: background-color var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+}
+.nav-cta:hover { background: var(--accent); }
+.nav-cta:active { transform: scale(0.97); }
+
+/* Scroll progress hairline */
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 101;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
+}
+#ripple {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.orbs { position: absolute; inset: 0; pointer-events: none; will-change: transform; }
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+}
+.orb-1 {
+  width: 62vw; height: 62vw;
+  max-width: 820px; max-height: 820px;
+  right: -14vw; top: -10vh;
+  background: radial-gradient(circle at 40% 40%, var(--mist-a), var(--mist-c) 45%, transparent 70%);
+  opacity: 0.9;
+  animation: drift-a 22s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 34vw; height: 34vw;
+  max-width: 460px; max-height: 460px;
+  left: -10vw; bottom: -12vh;
+  background: radial-gradient(circle, var(--mist-b), transparent 70%);
+  opacity: 0.8;
+  animation: drift-b 18s ease-in-out infinite alternate;
+}
+@keyframes drift-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-4vw, 3vh, 0) scale(1.06); }
+  100% { transform: translate3d(2vw, 6vh, 0) scale(0.97); }
+}
+@keyframes drift-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(6vw, -4vh, 0) scale(1.1); }
+}
+
+.hero-inner { position: relative; will-change: transform, opacity; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 2rem;
+}
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+}
+.hero-eyebrow .dot::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: ping 2.4s var(--ease-out) infinite;
+}
+@keyframes ping {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.hero h1 {
+  font-weight: 200;
+  font-size: clamp(3.25rem, 8.6vw, 7.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  max-width: 12ch;
+}
+.hero h1 strong { font-weight: 500; }
+
+/* word mask reveal */
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.w > span {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 1000ms var(--ease-out);
+}
+.is-loaded .w > span { transform: none; }
+
+.hero-sub {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 34ch;
+  margin-top: 2.25rem;
+  word-break: normal; line-break: strict;
+}
+.hero-sub b { font-weight: 500; color: var(--ink); }
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-top: 2.75rem;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--t-fast) var(--ease-out),
+              color var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+}
+.btn .arr { transition: transform var(--t-fast) var(--ease-out); }
+.btn:hover .arr { transform: translateX(4px); }
+.btn-solid {
+  padding: 1rem 1.625rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+}
+.btn-solid::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: translateX(-120%) skewX(-12deg);
+}
+.btn-solid:hover::after {
+  transform: translateX(320%) skewX(-12deg);
+  transition: transform 700ms var(--ease-out);
+}
+.btn-solid:hover { background: var(--accent); }
+.btn-solid:active { transform: scale(0.98); }
+.btn-line { color: var(--ink-2); }
+.btn-line:hover { color: var(--ink); }
+
+.hero-foot {
+  display: flex;
+  gap: 3rem;
+  margin-top: 5.5rem;
+  padding-top: 1.75rem;
+  position: relative;
+}
+.hero-foot::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1400ms var(--ease-out) 600ms;
+}
+.is-loaded .hero-foot::before { transform: scaleX(1); }
+.stat .n {
+  font-weight: 300;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat .l {
+  margin-top: 0.5rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 3.5rem;
+  background: var(--line);
+  overflow: hidden;
+}
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 40%;
+  background: var(--ink);
+  animation: cue 2s var(--ease-out) infinite;
+}
+@keyframes cue {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(260%); }
+}
+
+/* ==========================================================================
+   STATEMENT — dark band with scroll-scrubbed text
+   ========================================================================== */
+.statement {
+  background: var(--dark);
+  color: #fff;
+  padding: 12rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.statement .orb-3 {
+  position: absolute;
+  width: 50vw; height: 50vw;
+  max-width: 700px; max-height: 700px;
+  right: -12vw; top: 50%;
+  margin-top: -25vw;
+  border-radius: 50%;
+  filter: blur(70px);
+  background: radial-gradient(circle, rgba(111,143,166,0.38), transparent 70%);
+  animation: drift-b 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.statement .wrap { position: relative; }
+.statement .label { color: rgba(255,255,255,0.45); margin-bottom: 2rem; display: block; }
+.statement h2 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 200;
+  font-size: clamp(2.25rem, 6.5vw, 5.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+  word-break: normal; line-break: strict;
+}
+.statement h2 b { font-weight: 500; }
+.scrub .ch {
+  opacity: 0.16;
+  transition: opacity 260ms var(--ease-out);
+}
+.scrub .ch.on { opacity: 1; }
+.statement .en {
+  margin-top: 2.5rem;
+  font-weight: 300;
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ==========================================================================
+   WAVE DIVIDER — line draws on reveal
+   ========================================================================== */
+.wave-line {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 4rem;
+}
+.wave-line path {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1800ms var(--ease-out);
+}
+.wave-line.in path { stroke-dashoffset: 0; }
+
+/* ==========================================================================
+   SECTION HEAD
+   ========================================================================== */
+.section { padding: 9rem 0; }
+.sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.sec-head .label { display: block; margin-bottom: 1.25rem; }
+.sec-head h2 {
+  font-weight: 300;
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+.sec-head h2 strong { font-weight: 500; }
+.sec-head .hint {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+  padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   SERVICES — draggable snap rail
+   ========================================================================== */
+.rail-wrap {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: max(4vw, calc(50vw - 620px));
+}
+.rail {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 6vw 1rem 0;
+  scrollbar-width: none;
+  cursor: grab;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail.dragging { cursor: grabbing; scroll-snap-type: none; }
+.rail.dragging .card { pointer-events: none; }
+.card {
+  flex: 0 0 auto;
+  width: clamp(280px, 30vw, 400px);
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: start;
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform var(--t-base) var(--ease-out);
+}
+.card:hover { transform: translateY(-6px); }
+.card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--card-grad);
+}
+.card::after {
+  content: "";
+  position: absolute;
+  top: -20%; bottom: -20%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: translateX(-140%) skewX(-14deg);
+  pointer-events: none;
+}
+.card:hover::after {
+  transform: translateX(340%) skewX(-14deg);
+  transition: transform 900ms var(--ease-out);
+}
+.card > * { position: relative; z-index: 1; }
+.card:nth-child(1) { --card-grad: linear-gradient(160deg, #F1F5F9 0%, #DCE7EF 100%); }
+.card:nth-child(2) { --card-grad: linear-gradient(160deg, #F6F6F8 0%, #E3E7EC 100%); }
+.card:nth-child(3) { --card-grad: linear-gradient(160deg, #EEF3F7 0%, #C9D9E5 100%); }
+.card:nth-child(4) { --card-grad: linear-gradient(160deg, #FAFAFB 0%, #E8ECF0 100%); }
+.card:nth-child(5) { --card-grad: linear-gradient(160deg, #111214 0%, #2A2D33 100%); color: #fff; }
+.card:nth-child(5)::after { background: linear-gradient(100deg, transparent, rgba(255,255,255,0.12), transparent); }
+.card:nth-child(5) .c-kor,
+.card:nth-child(5) .c-desc { color: rgba(255,255,255,0.6); }
+
+.card .c-no {
+  font-weight: 200;
+  font-size: 3.5rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.card .c-name {
+  font-weight: 400;
+  font-size: 1.75rem;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 0.375rem;
+}
+.card .c-kor {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  margin-bottom: 0.875rem;
+}
+.card .c-desc {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  word-break: normal; line-break: strict;
+}
+.card .c-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.card .c-link .arr { transition: transform var(--t-fast) var(--ease-out); }
+.card:hover .c-link .arr { transform: translateX(4px); }
+
+.rail-bar {
+  width: min(92%, 1240px);
+  margin: 2rem auto 0;
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.rail-bar span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transform-origin: left center;
+  transform: scaleX(0.2);
+}
+
+/* ==========================================================================
+   PHILOSOPHY
+   ========================================================================== */
+.phil-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+.phil .p-no {
+  font-weight: 200;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink-3);
+  margin-bottom: 2.25rem;
+}
+.phil h3 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+.phil .p-en {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  color: var(--ink-3);
+  margin-bottom: 1.125rem;
+}
+.phil p {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  word-break: normal; line-break: strict;
+}
+
+/* ==========================================================================
+   ABOUT — plate with flowing water surface
+   ========================================================================== */
+.about { background: var(--bg-2); }
+.about .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.plate {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--mist-b) 55%, var(--mist-a) 100%);
+}
+.water {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 46%;
+  will-change: transform;
+}
+.water svg {
+  position: absolute;
+  left: 0; top: 0;
+  width: 200%;
+  height: 3.5rem;
+  transform: translateY(-96%);
+}
+.water .body {
+  position: absolute;
+  inset: 0;
+  top: -2px;
+}
+.water.w1 .body { background: linear-gradient(180deg, rgba(201,217,229,0.75), rgba(111,143,166,0.55)); }
+.water.w1 svg path { fill: rgba(201,217,229,0.75); }
+.water.w1 svg { animation: flow 11s linear infinite; }
+.water.w2 { height: 30%; }
+.water.w2 .body { background: linear-gradient(180deg, rgba(111,143,166,0.55), rgba(64,92,112,0.7)); }
+.water.w2 svg path { fill: rgba(111,143,166,0.55); }
+.water.w2 svg { animation: flow 7s linear infinite reverse; }
+@keyframes flow {
+  from { transform: translate3d(0, -96%, 0); }
+  to   { transform: translate3d(-50%, -96%, 0); }
+}
+.bubble {
+  position: absolute;
+  bottom: 6%;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.8);
+  opacity: 0;
+  animation: rise 7s ease-in infinite;
+}
+.bubble:nth-of-type(1) { left: 22%; animation-delay: 0s; }
+.bubble:nth-of-type(2) { left: 48%; animation-delay: 2.4s; width: 4px; height: 4px; }
+.bubble:nth-of-type(3) { left: 71%; animation-delay: 4.6s; width: 8px; height: 8px; }
+@keyframes rise {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  15%  { opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { transform: translate3d(8px, -15rem, 0); opacity: 0; }
+}
+.plate .pl-mark {
+  position: absolute;
+  left: 2rem; top: 2rem;
+  line-height: 1;
+  z-index: 2;
+}
+.plate .pl-mark .m1 {
+  display: block;
+  font-weight: 500;
+  font-size: 1.125rem;
+  letter-spacing: 0.08em;
+}
+.plate .pl-mark .m2 {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+}
+.plate .ring {
+  position: absolute;
+  right: 2rem; top: 2rem;
+  width: 4.5rem; height: 4.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(17,18,20,0.2);
+  z-index: 2;
+  animation: spin 14s linear infinite;
+}
+.plate .ring::after {
+  content: "";
+  position: absolute;
+  top: -3px; left: 50%;
+  width: 6px; height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.about .label { display: block; margin-bottom: 1.25rem; }
+.about h2 {
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.75rem;
+}
+.about h2 strong { font-weight: 500; }
+.about p {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+  max-width: 40ch;
+  margin-bottom: 1rem;
+  word-break: normal; line-break: strict;
+}
+.sig {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+.sig small {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+/* ==========================================================================
+   VISIT
+   ========================================================================== */
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+.visit .label { display: block; margin-bottom: 1.5rem; }
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.hours-row .d { font-family: "Noto Sans JP", sans-serif; font-size: 1rem; }
+.hours-row .t {
+  font-weight: 300;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+.hours-row.hi .t { color: var(--accent); font-weight: 500; }
+.hours-row.off .t { color: var(--ink-3); }
+
+.addr {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+.addr small {
+  display: block;
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+.phone {
+  display: inline-block;
+  margin: 2rem 0 1.75rem;
+  font-weight: 200;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.phone:hover { color: var(--accent); }
+.visit-cta { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  padding: 4rem 0 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.foot-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  flex-wrap: wrap;
+}
+.foot-links a { transition: color var(--t-fast) var(--ease-out); }
+.foot-links a:hover { color: var(--ink); }
+.foot-meta {
+  margin-top: 2.5rem;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity var(--t-enter) var(--ease-out),
+              transform var(--t-enter) var(--ease-out);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   REDUCED MOTION — everything static
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .w > span { opacity: 1; transform: none; }
+  .scrub .ch { opacity: 1; }
+  .wave-line path { stroke-dashoffset: 0; }
+  .hero-foot::before { transform: scaleX(1); }
+  #ripple, .scroll-cue, .bubble { display: none; }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .nav-links > a:not(.nav-cta) { display: none; }
+  .about .wrap { grid-template-columns: 1fr; gap: 3rem; }
+  .visit-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .phil-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 640px) {
+  .section { padding: 6rem 0; }
+  .statement { padding: 8rem 0; }
+  .hero { padding: 6rem 0 4rem; }
+  .hero-foot { gap: 2rem; flex-wrap: wrap; }
+  .card { width: 78vw; }
+  .rail-wrap { padding-left: 4vw; }
+  .sec-head { flex-direction: column; align-items: flex-start; }
+  .scroll-cue { display: none; }
+}
+/* ==========================================================================
+   THEME — Indian pink × graphite
+   ========================================================================== */
+.label { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 400; font-size: 0.6875rem; letter-spacing: 0.08em; }
+::selection { background: var(--pink); color: var(--graphite); }
+
+/* nav — light glass */
+.nav::before { background: rgba(246,243,243,0.55); border-bottom: 1px solid rgba(28,29,33,0.06); opacity: 1; }
+.nav.scrolled::before { background: rgba(247,247,248,0.82); }
+.brand .b-main { color: var(--graphite); }
+.brand .b-kor { color: var(--ink-3); }
+.nav-links { color: var(--ink-2); }
+.nav-links a:hover { color: var(--graphite); }
+.nav-cta { background: var(--graphite); color: #fff !important; }
+.nav-cta:hover { background: var(--pink-deep); }
+footer .brand .b-main { color: #fff; }
+.progress { background: linear-gradient(90deg, var(--pink-deep), var(--pink), #C9CBD1); }
+
+/* hero — soft gray & Indian pink with photo */
+.hero {
+  background:
+    radial-gradient(70% 60% at 85% 20%, rgba(235,201,201,0.55), transparent 70%),
+    linear-gradient(160deg, #F6F1F1 0%, #EFEDEF 50%, #E6E6EA 100%);
+  color: var(--graphite);
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(28,29,33,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,29,33,0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, #000 20%, transparent 75%);
+          mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, #000 20%, transparent 75%);
+}
+.orb-1 { background: radial-gradient(circle at 40% 40%, rgba(235,201,201,0.9), rgba(216,161,164,0.4) 45%, transparent 70%); opacity: 0.7; }
+.orb-2 { background: radial-gradient(circle, rgba(201,203,209,0.55), transparent 70%); }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; position: relative; }
+.hero h1 { color: var(--graphite); font-size: clamp(3rem, 6.6vw, 6.5rem); }
+.hero h1 strong {
+  background: linear-gradient(100deg, var(--graphite) 0%, #5A5B62 30%, var(--pink-deep) 60%, var(--pink) 80%, #8E9098 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: sheen 9s ease-in-out infinite alternate;
+}
+@keyframes sheen { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+.hero-eyebrow .label { color: var(--ink-3); }
+.hero-eyebrow .dot { background: var(--pink-deep); }
+.hero-eyebrow .dot::after { border-color: var(--pink-deep); }
+.hero-sub { color: var(--ink-2); }
+.hero-sub b { color: var(--graphite); }
+.hero .btn-solid { background: var(--graphite); color: #fff; }
+.hero .btn-solid:hover { background: var(--pink-deep); }
+.hero .btn-line { color: var(--ink-2); }
+.hero .btn-line:hover { color: var(--graphite); }
+.hero-foot { margin-top: 4rem; }
+.hero-foot::before { background: rgba(28,29,33,0.12); }
+.stat .n { color: var(--graphite); }
+.stat .l { color: var(--ink-3); }
+.scroll-cue { background: rgba(28,29,33,0.12); }
+.scroll-cue::after { background: var(--pink-deep); }
+.hero-coords {
+  position: absolute; right: 4vw; bottom: 2rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.6875rem;
+  letter-spacing: 0.08em; line-height: 1.6; text-align: right;
+  color: var(--ink-3);
+}
+
+/* hero photo frame */
+.hero-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -40px rgba(120,80,84,0.45), inset 0 0 0 1px rgba(255,255,255,0.6);
+  background: linear-gradient(175deg, #FBF7F6 0%, #F1E2E2 45%, #DCD3D5 75%, #C4C1C6 100%);
+  will-change: transform;
+}
+.hero-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ph-art { position: absolute; inset: 0; }
+.ph-art .sun {
+  position: absolute; left: 50%; top: 24%;
+  width: 46%; aspect-ratio: 1; margin-left: -23%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 40%, #FFFFFF 0%, #FBEDEC 40%, rgba(235,201,201,0) 72%);
+  animation: breathe 9s ease-in-out infinite alternate;
+}
+.ph-art .petal {
+  position: absolute; border-radius: 60% 40% 60% 40%;
+  background: radial-gradient(circle at 35% 30%, #F2D3D3, #D8A1A4 70%);
+  opacity: 0.85;
+  filter: blur(0.3px);
+  animation: float 12s ease-in-out infinite alternate;
+}
+.ph-art .p1 { width: 34%; aspect-ratio: 1.1; left: 12%; bottom: 20%; transform: rotate(-18deg); }
+.ph-art .p2 { width: 24%; aspect-ratio: 1.2; right: 14%; bottom: 30%; animation-delay: -4s; background: radial-gradient(circle at 35% 30%, #F6E2E2, #E2B5B7 70%); }
+.ph-art .p3 { width: 16%; aspect-ratio: 1; left: 44%; bottom: 12%; animation-delay: -8s; background: radial-gradient(circle at 35% 30%, #EDEDF0, #B9BBC2 75%); }
+.ph-art .mist {
+  position: absolute; left: -10%; right: -10%; bottom: -6%; height: 36%;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(230,230,234,0.9));
+  filter: blur(8px);
+}
+@keyframes breathe { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes float { from { transform: translate3d(0,0,0) rotate(-12deg); } to { transform: translate3d(6px,-14px,0) rotate(6deg); } }
+.ph-chip {
+  position: absolute; left: 1.25rem; bottom: 1.25rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(255,255,255,0.7);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.6875rem; letter-spacing: 0.06em;
+  color: var(--graphite);
+}
+.ph-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink-deep); }
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-photo { max-width: 520px; width: 100%; }
+}
+
+/* statement — pink-to-gray light band */
+.statement { background: linear-gradient(135deg, #F4E5E4 0%, #ECECEF 55%, #E1E2E6 100%); color: var(--graphite); }
+.statement .label { color: var(--ink-3); }
+.statement .en { color: var(--ink-2); }
+.statement h2 b { color: var(--pink-ink); }
+.statement .orb-3 { background: radial-gradient(circle, rgba(216,161,164,0.55), transparent 70%); }
+
+/* headings — graphite to pink gradient */
+.sec-head h2 strong, .about h2 strong {
+  background: linear-gradient(100deg, var(--graphite) 0%, #4A4B52 45%, var(--pink-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.phil .p-no {
+  background: linear-gradient(160deg, #B9BBC2, var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* service cards */
+.card { box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 2px rgba(28,29,33,0.04); }
+.card:nth-child(1) { --card-grad: linear-gradient(160deg, #F7EDEC 0%, #E9CACA 100%); }
+.card:nth-child(2) { --card-grad: linear-gradient(160deg, #F5F5F7 0%, #DCDDE2 100%); }
+.card:nth-child(3) { --card-grad: linear-gradient(160deg, #F1E4E5 0%, #DDB6B8 60%, #CDA3A6 100%); }
+.card:nth-child(4) { --card-grad: linear-gradient(160deg, #FBFBFC 0%, #E4E5E9 100%); }
+.card:nth-child(5) { --card-grad: radial-gradient(circle at 85% 12%, rgba(216,161,164,0.5), transparent 55%), linear-gradient(160deg, #1E1F23 0%, #2C2D33 100%); }
+.rail-bar span { background: linear-gradient(90deg, var(--pink-deep), var(--pink)); }
+
+/* about — pink & gray water */
+.about { background: var(--bg-2); }
+.plate { background: linear-gradient(180deg, #FFFFFF 0%, #F4EAEA 50%, #E8D3D4 100%); }
+.water.w1 .body { background: linear-gradient(180deg, #EAC6C7, #D9A6A9); }
+.water.w1 svg path { fill: #EAC6C7; }
+.water.w2 .body { background: linear-gradient(180deg, #B3AEB3, #3A3A40); }
+.water.w2 svg path { fill: #B3AEB3; }
+.plate .ring::after { background: var(--pink-deep); }
+
+/* visit */
+.hours-row.hi .t { color: var(--pink-ink); }
+.phone:hover { color: var(--pink-deep); }
+.btn-solid { background: var(--graphite); }
+.btn-solid:hover { background: var(--pink-deep); }
+
+/* footer — dark bookend */
+footer { background: #16171A; border-top: 0; color: #fff; }
+footer .brand .b-kor { color: rgba(255,255,255,0.45); }
+.foot-links { color: rgba(255,255,255,0.6); }
+.foot-links a:hover { color: var(--pink); }
+.foot-meta { color: rgba(255,255,255,0.38); }
+
+@media (max-width: 640px) { .hero-coords { display: none; } }
+/* language switcher */
+.lang { display: inline-flex; gap: 0.125rem; padding: 0.1875rem; border: 1px solid rgba(28,29,33,0.12); border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.04em; }
+.lang a { padding: 0.25rem 0.5rem; border-radius: 999px; color: var(--ink-3); transition: color var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out); }
+.lang a:hover { color: var(--graphite); }
+.lang a[aria-current="page"] { background: var(--graphite); color: #fff; }
+@media (max-width: 640px) { .nav-links { gap: 0.75rem; } .brand .b-kor { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand">
+      <span class="b-main">L'EAU LIFT</span>
+      <span class="b-kor">ロリフト医院 果川</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+      <a href="https://blog.naver.com/nespresso" target="_blank" rel="noopener">Blog</a>
+      <span class="lang" aria-label="Language"><a href="/" hreflang="ko" lang="ko">KO</a><a href="/en/" hreflang="en" lang="en">EN</a><a href="/ja/" hreflang="ja" lang="ja" aria-current="page">JA</a></span>
+      <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="nav-cta">予約する</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="ripple" aria-hidden="true"></canvas>
+  <div class="orbs" id="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-inner" id="heroInner">
+      <div class="hero-eyebrow reveal">
+        <span class="dot"></span>
+        <span class="label">Premium Aesthetic · Dermatology · Gwacheon</span>
+      </div>
+      <h1 aria-label="Beauty, naturally restored.">
+        <span class="w"><span>Beauty,</span></span><br/>
+        <span class="w"><span>naturally</span></span><br/>
+        <span class="w"><span><strong>restored.</strong></span></span>
+      </h1>
+      <p class="hero-sub reveal">
+        <b>ロリフト医院</b>は、肌が本来持つ健やかさと、秘められた美しさを取り戻します。
+        やりすぎない繊細な手技で、あなただけの輝く瞬間をかたちにします。
+      </p>
+      <div class="hero-cta reveal">
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-solid">NAVERで予約 <span class="arr">→</span></a>
+        <a href="#services" class="btn btn-line">施術を見る <span class="arr">→</span></a>
+      </div>
+      <div class="hero-foot reveal">
+        <div class="stat"><div class="n" data-count="5" data-pad="2">05</div><div class="l">シグネチャー施術</div></div>
+        <div class="stat"><div class="n">1:1</div><div class="l">マンツーマン相談</div></div>
+        <div class="stat"><div class="n">果川</div><div class="l">京畿道 果川市</div></div>
+      </div>
+    </div>
+    <figure class="hero-photo reveal" id="heroPhoto">
+      <div class="ph-art" aria-hidden="true"><span class="sun"></span><span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="mist"></span></div>
+      <img src="/hero.jpg" alt="やわらかな自然光が差し込むロリフト医院の空間" onerror="this.remove()" />
+      <figcaption class="ph-chip"><span class="dot"></span>Natural · Calm · Private</figcaption>
+    </figure>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+  <div class="hero-coords" aria-hidden="true">37.43°N · 126.99°E<br/>GWACHEON · KR</div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement" id="statement">
+  <div class="orb-3" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="label">Our belief</span>
+    <h2 class="scrub" id="scrub">隠さない。<br/><b>取り戻す。</b></h2>
+    <p class="en reveal">We don't cover. We restore — the skin you were born with.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Services</span>
+        <h2>Five rituals,<br/><strong>one philosophy.</strong></h2>
+      </div>
+      <span class="hint">ドラッグしてご覧ください →</span>
+    </div>
+  </div>
+  <div class="rail-wrap reveal">
+    <div class="rail" id="rail">
+      <a class="card" href="#services" draggable="false">
+        <div class="c-no">01</div>
+        <div>
+          <div class="c-name">Dermatology</div>
+          <div class="c-kor">皮膚科クリニック</div>
+          <p class="c-desc">ニキビ・傷跡の再生から、シミ、リフティング、スキンブースターまで。健やかな肌のためのトータルソリューション。</p>
+          <span class="c-link">詳しく <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="card" href="#services" draggable="false">
+        <div class="c-no">02</div>
+        <div>
+          <div class="c-name">Silhouette</div>
+          <div class="c-kor">痩身・ボディライン</div>
+          <p class="c-desc">体系的なダイエット設計と、ボディラインを整えるオーダーメイドケア。</p>
+          <span class="c-link">詳しく <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="card" href="#services" draggable="false">
+        <div class="c-no">03</div>
+        <div>
+          <div class="c-name">Private Care</div>
+          <div class="c-kor">プライベートケア</div>
+          <p class="c-desc">独立した個室で、プライバシーを守りながら心からの休息とケアを。</p>
+          <span class="c-link">詳しく <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="card" href="#services" draggable="false">
+        <div class="c-no">04</div>
+        <div>
+          <div class="c-name">Éclat Tone</div>
+          <div class="c-kor">トーン＆ツヤケア</div>
+          <p class="c-desc">肌トーンを均一に整え、内側からの自然なツヤを引き出すプロトコル。</p>
+          <span class="c-link">詳しく <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="card" href="#services" draggable="false">
+        <div class="c-no">05</div>
+        <div>
+          <div class="c-name">Anti-aging</div>
+          <div class="c-kor">エイジングケア</div>
+          <p class="c-desc">高周波・レーザー・スキンブースターを組み合わせたコラーゲン再生プロトコル。</p>
+          <span class="c-link">詳しく <span class="arr">→</span></span>
+        </div>
+      </a>
+    </div>
+    <div class="rail-bar"><span id="railBar"></span></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section" id="philosophy" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Philosophy</span>
+        <h2>Quiet devotion<br/><strong>to your own skin.</strong></h2>
+      </div>
+    </div>
+    <svg class="wave-line reveal-line" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M0 20 C 100 0, 200 40, 300 20 S 500 0, 600 20 S 800 40, 900 20 S 1100 0, 1200 20" />
+    </svg>
+    <div class="phil-grid">
+      <div class="phil reveal">
+        <div class="p-no">01</div>
+        <h3>1:1 オーダーメイド相談</h3>
+        <div class="p-en">Personal consultation</div>
+        <p>画一的な診療ではなく、一人ひとりの肌の特徴やお悩みに深く耳を傾ける、丁寧なカウンセリングを行います。</p>
+      </div>
+      <div class="phil reveal">
+        <div class="p-no">02</div>
+        <h3>プレミアムソリューション</h3>
+        <div class="p-en">Premium solution</div>
+        <p>最新の機器と厳選した正規品の薬剤のみを使用し、安全で効果的な最良の結果をお約束します。</p>
+      </div>
+      <div class="phil reveal">
+        <div class="p-no">03</div>
+        <h3>自然な美しさ</h3>
+        <div class="p-en">Natural grace</div>
+        <p>人工的ではない、自然な美しさ。日常へのスムーズな復帰を考えた、繊細な施術を目指します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="wrap">
+    <div class="plate reveal" aria-hidden="true">
+      <span class="ring"></span>
+      <div class="pl-mark">
+        <span class="m1">L'EAU LIFT</span>
+        <span class="m2">CLINIQUE · EST. 2026 · GWACHEON</span>
+      </div>
+      <div class="water w1" id="water">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 30 C 150 0, 300 60, 450 30 S 750 0, 900 30 S 1050 60, 1200 30 V60 H0 Z"/></svg>
+        <div class="body"></div>
+      </div>
+      <div class="water w2">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 30 C 150 60, 300 0, 450 30 S 750 60, 900 30 S 1050 0, 1200 30 V60 H0 Z"/></svg>
+        <div class="body"></div>
+        <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      </div>
+    </div>
+    <div>
+      <span class="label reveal">The clinic</span>
+      <h2 class="reveal">Where science meets<br/><strong>a quiet sense of beauty.</strong></h2>
+      <p class="reveal">ロリフト医院は、医療スタッフの繊細な手と、心を込めて設計された空間から始まります。私たちは「見える美しさ」よりも「感じられる健やかさ」を大切にしています。</p>
+      <p class="reveal">あなただけのためのプライベートな空間で、あなたの一日を一枚の写真のように美しく残したいと願っています。</p>
+      <div class="sig reveal">L'EAU LIFT Medical Team<small>院長 · Director</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="label">Visit</span>
+        <h2>Hours &amp;<br/><strong>directions.</strong></h2>
+      </div>
+    </div>
+    <svg class="wave-line reveal-line" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M0 20 C 100 40, 200 0, 300 20 S 500 40, 600 20 S 800 0, 900 20 S 1100 40, 1200 20" />
+    </svg>
+    <div class="visit-grid">
+      <div class="reveal">
+        <span class="label">診療時間</span>
+        <div class="hours-row"><span class="d">月 · 火 · 木 · 金</span><span class="t">10:00 — 19:00</span></div>
+        <div class="hours-row hi"><span class="d">水曜日 · 夜間診療</span><span class="t">10:00 — 20:00</span></div>
+        <div class="hours-row"><span class="d">昼休み</span><span class="t">13:00 — 14:00</span></div>
+        <div class="hours-row off"><span class="d">土 · 日 · 祝日</span><span class="t">休診</span></div>
+      </div>
+      <div class="reveal">
+        <span class="label">アクセス</span>
+        <div class="addr">
+          京畿道 果川市 ピンク路 123
+          <small>ロリフトビル 3階 · 無料駐車場あり</small>
+          <small>Gwacheon-si, Gyeonggi-do</small>
+        </div>
+        <a href="tel:02-1234-5678" class="phone">02. 1234. 5678</a>
+        <div class="visit-cta">
+          <a href="https://booking.naver.com/" target="_blank" rel="noopener" class="btn btn-solid">NAVERで予約 <span class="arr">→</span></a>
+          <a href="https://blog.naver.com/nespresso" target="_blank" rel="noopener" class="btn btn-line">公式ブログ <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="#" class="brand">
+        <span class="b-main">L'EAU LIFT</span>
+        <span class="b-kor">ロリフト医院 果川</span>
+      </a>
+      <div class="foot-links">
+        <a href="#services">Services</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#about">About</a>
+        <a href="#visit">Visit</a>
+        <a href="https://booking.naver.com/" target="_blank" rel="noopener">Booking</a>
+        <a href="https://blog.naver.com/nespresso" target="_blank" rel="noopener">Blog</a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>© 2026 ロリフト医院</span>
+      <span>事業者登録番号 123-45-67890</span>
+      <span>02. 1234. 5678</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+
+  /* ---------- Hero word reveal on load ---------- */
+  document.querySelectorAll(".w > span").forEach(function (el, i) {
+    el.style.transitionDelay = (120 + i * 110) + "ms";
+  });
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { document.body.classList.add("is-loaded"); });
+  });
+
+  /* ---------- Scrub text: split into characters ---------- */
+  var scrubEl = document.getElementById("scrub");
+  var chars = [];
+  (function split(el) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var frag = document.createDocumentFragment();
+      Array.from(n.textContent).forEach(function (c) {
+        if (/\s/.test(c)) { frag.appendChild(document.createTextNode(c)); return; }
+        var s = document.createElement("span");
+        s.className = "ch";
+        s.textContent = c;
+        frag.appendChild(s);
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+    chars = Array.from(el.querySelectorAll(".ch"));
+  })(scrubEl);
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealNodes = document.querySelectorAll(".reveal, .reveal-line");
+  var counted = false;
+  function countUp(el) {
+    var target = +el.dataset.count, pad = +(el.dataset.pad || 0), t0 = null, dur = 1200;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = clamp((ts - t0) / dur, 0, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(eased * target)).padStart(pad, "0");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    el.textContent = "0".padStart(pad, "0");
+    requestAnimationFrame(step);
+  }
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealNodes.forEach(function (n) { n.classList.add("in"); });
+    chars.forEach(function (c) { c.classList.add("on"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        io.unobserve(en.target);
+        if (!counted && en.target.classList.contains("hero-foot")) {
+          counted = true;
+          en.target.querySelectorAll("[data-count]").forEach(countUp);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
+    revealNodes.forEach(function (n) { io.observe(n); });
+    document.querySelectorAll(".hero .reveal").forEach(function (el, i) {
+      el.style.transitionDelay = (450 + i * 90) + "ms";
+    });
+  }
+
+  /* ---------- Scroll-linked effects (one rAF loop) ---------- */
+  var nav = document.getElementById("nav");
+  var bar = document.getElementById("progress");
+  var hero = document.getElementById("hero");
+  var heroInner = document.getElementById("heroInner");
+  var orbs = document.getElementById("orbs");
+  var heroPhoto = document.getElementById("heroPhoto");
+  var statement = document.getElementById("statement");
+  var water = document.getElementById("water");
+  var ticking = false;
+
+  function onScroll() {
+    var y = window.scrollY;
+    var vh = window.innerHeight;
+    var docH = document.documentElement.scrollHeight - vh;
+
+    nav.classList.toggle("scrolled", y > 24);
+    bar.style.transform = "scaleX(" + (docH > 0 ? y / docH : 0) + ")";
+
+    if (!reduced) {
+      // hero: lift + fade content, slower parallax on orbs
+      var hp = clamp(y / hero.offsetHeight, 0, 1);
+      if (hp < 1) {
+        heroInner.style.transform = "translate3d(0," + (y * -0.18) + "px,0)";
+        heroInner.style.opacity = String(1 - hp * 1.15);
+        orbs.style.transform = "translate3d(0," + (y * 0.25) + "px,0)";
+        heroPhoto.style.transform = "translate3d(0," + (y * -0.08) + "px,0)";
+      }
+
+      // statement: light characters progressively
+      var r = statement.getBoundingClientRect();
+      var sp = clamp((vh * 0.8 - r.top) / (r.height * 0.75), 0, 1);
+      var lit = Math.floor(sp * (chars.length + 1));
+      for (var i = 0; i < chars.length; i++) chars[i].classList.toggle("on", i < lit);
+
+      // water level rises as the about plate passes through view
+      var wr = water.parentElement.getBoundingClientRect();
+      var wp = clamp((vh - wr.top) / (vh + wr.height), 0, 1);
+      water.style.transform = "translate3d(0," + ((1 - wp) * 30) + "%,0)";
+    }
+    ticking = false;
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  /* ---------- Services rail: drag + progress bar ---------- */
+  var rail = document.getElementById("rail");
+  var railBar = document.getElementById("railBar");
+  function railProgress() {
+    var max = rail.scrollWidth - rail.clientWidth;
+    var vis = rail.clientWidth / rail.scrollWidth;
+    var p = max > 0 ? rail.scrollLeft / max : 0;
+    railBar.style.transform = "translate3d(" + (p * (1 - vis) * 100 / vis) + "%,0,0) scaleX(1)";
+    railBar.style.width = (vis * 100) + "%";
+  }
+  rail.addEventListener("scroll", railProgress, { passive: true });
+  window.addEventListener("resize", railProgress);
+  railProgress();
+
+  var down = false, startX = 0, startLeft = 0, moved = false;
+  rail.addEventListener("pointerdown", function (e) {
+    if (e.pointerType !== "mouse") return;
+    down = true; moved = false;
+    startX = e.clientX; startLeft = rail.scrollLeft;
+  });
+  window.addEventListener("pointermove", function (e) {
+    if (!down) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 4 && !moved) { moved = true; rail.classList.add("dragging"); }
+    if (moved) rail.scrollLeft = startLeft - dx;
+  });
+  window.addEventListener("pointerup", function () {
+    if (!down) return;
+    down = false;
+    rail.classList.remove("dragging");
+  });
+  rail.addEventListener("click", function (e) {
+    if (moved) { e.preventDefault(); moved = false; }
+  }, true);
+
+  /* ---------- Hero water ripples (canvas) ---------- */
+  if (reduced) return;
+  var cv = document.getElementById("ripple");
+  var ctx = cv.getContext("2d");
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0, rings = [], running = false, last = 0, lastSpawn = 0, lastPointer = 0;
+
+  function resize() {
+    var rect = cv.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn(x, y, size) {
+    rings.push({ x: x, y: y, r: 0, max: size, life: 1 });
+    if (rings.length > 24) rings.shift();
+  }
+  function frame(ts) {
+    if (!running) return;
+    var dt = Math.min(ts - (last || ts), 50);
+    last = ts;
+
+    if (ts - lastSpawn > 1600) {
+      lastSpawn = ts;
+      spawn(W * (0.45 + Math.random() * 0.5), H * (0.2 + Math.random() * 0.6), 160 + Math.random() * 180);
+    }
+
+    ctx.clearRect(0, 0, W, H);
+    for (var i = rings.length - 1; i >= 0; i--) {
+      var g = rings[i];
+      g.r += (g.max - g.r) * 0.0022 * dt + 0.02 * dt;
+      g.life = 1 - g.r / g.max;
+      if (g.life <= 0.01) { rings.splice(i, 1); continue; }
+      for (var k = 0; k < 3; k++) {
+        var rr = g.r * (1 - k * 0.22);
+        if (rr <= 0) continue;
+        ctx.beginPath();
+        ctx.ellipse(g.x, g.y, rr, rr * 0.42, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(183,120,125," + (g.life * (0.32 - k * 0.08)).toFixed(3) + ")";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  function start() { if (!running) { running = true; last = 0; requestAnimationFrame(frame); } }
+  function stop() { running = false; }
+
+  resize();
+  window.addEventListener("resize", resize);
+  hero.addEventListener("pointermove", function (e) {
+    var now = performance.now();
+    if (now - lastPointer < 140) return;
+    lastPointer = now;
+    var rect = cv.getBoundingClientRect();
+    spawn(e.clientX - rect.left, e.clientY - rect.top, 70 + Math.random() * 50);
+  }, { passive: true });
+
+  new IntersectionObserver(function (entries) {
+    entries[0].isIntersecting && !document.hidden ? start() : stop();
+  }).observe(hero);
+  document.addEventListener("visibilitychange", function () {
+    document.hidden ? stop() : start();
+  });
+})();
+</script>
+</body>
+</html>
